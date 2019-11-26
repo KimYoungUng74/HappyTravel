@@ -16,8 +16,8 @@ Circles.create({
 
 $.notify({
 	icon: 'la la-bell',
-	title: 'Bootstrap notify',
-	message: 'Turning standard Bootstrap alerts into "notify" like notifications',
+	title: '여행을 떠나보세요!',
+	message: '지도에서 가고싶은 곳을 클릭하시면 해당 국가의 여행정보를 확인할 수 있어요!',
 },{
 	type: 'success',
 	placement: {
