@@ -746,6 +746,8 @@
 		</div>
 	</div>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" charset="utf-8"></script>
 <script src="<c:url value='resources/Ready/assets/js/core/jquery.3.2.1.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/core/popper.min.js'/>"></script>
