@@ -17,7 +17,7 @@
 		<div class="main-header">
 			<div class="logo-header">
 				
-				<a href="index.html" class="logo">
+				<a href="index.html" class="logo" id="logo">
 					<img src="resources/Ready/assets/img/logo.png" alt="user-img" width="36" class="img-circle"> HappyTravel
 				</a>
 		
@@ -31,7 +31,7 @@
 					
 					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
 						<div class="input-group">
-							<input type="text" placeholder="Search ..." class="form-control">
+							<input type="text" placeholder="여행지 검색" class="form-control">
 							<div class="input-group-append">
 								<span class="input-group-text">
 									<i class="la la-search search-icon"></i>
@@ -41,9 +41,7 @@
 					</form>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
 						<li class="nav-item dropdown hidden-caret">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="la la-envelope"></i>
-							</a>
+							
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item" href="#">Action</a>
 								<a class="dropdown-item" href="#">Another action</a>
@@ -53,22 +51,18 @@
 						</li>
 						
 						<li class="nav-item dropdown">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="resources/Ready/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >Hizrian</span></span> </a>
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"><span >Hizrian</span></span> </a>
 							<ul class="dropdown-menu dropdown-user">
 								<li>
 									<div class="user-box">
-										<div class="u-img"><img src="resources/Ready/assets/img/profile.jpg" alt="user"></div>
 										<div class="u-text">
-											<h4>Hizrian</h4>
-											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<h4>이름 들어가는곳</h4>
+											<p class="text-muted">이메일 들어가는곳 </p></div>
 										</div>
 									</li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
-									<a class="dropdown-item" href="#"></i> My Balance</a>
-									<a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
+									<a class="dropdown-item" href="#"><i class="ti-user"></i>내정보</a>
+									<a class="dropdown-item" href="#"></i>내 게시물</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Logout</a>
 								</ul>
@@ -82,13 +76,13 @@
 				<div class="scrollbar-inner sidebar-wrapper">
 					<div class="user">
 						<div class="photo">
-							<img src="resources/Ready/assets/img/profile.jpg">
+							<img src="resources/Ready/assets/img/logo.png">
 						</div>
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
+									이름들어가는곳
+									<span class="user-level">회원 등급</span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -98,17 +92,19 @@
 								<ul class="nav">
 									<li>
 										<a href="#profile">
-											<span class="link-collapse">My Profile</span>
+											<span class="link-collapse">내정보</span>
 										</a>
 									</li>
 									<li>
+									
 										<a href="#edit">
-											<span class="link-collapse">Edit Profile</span>
+										
+											<span class="link-collapse">내 게시물</span>
 										</a>
 									</li>
 									<li>
 										<a href="#settings">
-											<span class="link-collapse">Settings</span>
+											<span class="link-collapse">로그아웃</span>
 										</a>
 									</li>
 								</ul>
@@ -116,13 +112,13 @@
 						</div>
 					</div>
 					<ul class="nav">
-						<li class="nav-item active">
+						<li class="nav-item">
 							<a href="index.html">
 								<p>여행정보</p>
 								<span class="badge badge-count">5</span>
 							</a>
 						</li>
-						<li class="nav-item active">
+						<li class="nav-item">
 							<a href="index.html">
 								<p>여행후기</p>
 								<span class="badge badge-count">5</span>
@@ -166,8 +162,8 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Sales</p>
-													<h4 class="card-title">$ 1,345</h4>
+													<p class="card-category">인기여행지</p>
+													<h4 class="card-title">이시국</h4>
 												</div>
 											</div>
 										</div>
@@ -185,7 +181,7 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Subscribers</p>
+													<p class="card-category">여행 후기</p>
 													<h4 class="card-title">1303</h4>
 												</div>
 											</div>
@@ -204,8 +200,8 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Order</p>
-													<h4 class="card-title">576</h4>
+													<p class="card-category">추천여행지</p>
+													<h4 class="card-title">북한</h4>
 												</div>
 											</div>
 										</div>
@@ -294,9 +290,9 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">World Map</h4>
+										<h4 class="card-title">세계지도 </h4>
 										<p class="card-category">
-										Map of the distribution of users around the world</p>
+										원하는 여행지를 클릭해보세요!</p>
 									</div>
 									<div class="card-body">
 										<div class="mapcontainer">
@@ -512,6 +508,8 @@
 </body>
 
 
+
+
 <script src="<c:url value='resources/Ready/assets/js/core/jquery.3.2.1.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/core/popper.min.js'/>"></script>
@@ -526,4 +524,21 @@
 <script src="<c:url value='resources/Ready/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/ready.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/demo.js'/>"></script>
+
+<!-- <script>
+        $(function(){
+            $(".map").on('mousewheel DOMMouseScroll', function(e) {
+            	
+                var E = e.originalEvent;
+                delta = 0;
+                console.log(E);
+                if (E.detail>0) {
+                	alert("꾸꾸");
+                }else{
+                    
+                };
+            });
+        });
+   </script>
+ -->
 </html>
