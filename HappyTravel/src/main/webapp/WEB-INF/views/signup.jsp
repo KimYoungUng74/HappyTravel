@@ -5,6 +5,7 @@
 
 <head>
   <!-- Required meta tags -->
+  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>RoyalUI Admin</title>
@@ -26,19 +27,31 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-               <img src="resources/Ready/assets/img/logo.png" alt="logo">HappyTravel
+                <img src="resources/Ready/assets/img/loginLogo.png" alt="logo">
               </div>
-              <h4>New here?</h4>
-              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+              <h4>회원가입</h4>
+              <h6 class="font-weight-light">간단한 정보를 입력하고 회원가입을 완료하세요.</h6>
               <form class="pt-3">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
+                <h6>아이디</h6>
+                  <input type="text" class="form-control form-control-lg" id="user_id" placeholder="ID">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                <h6>비밀번호</h6>
+                  <input type="password" class="form-control form-control-lg" id="user_pw" placeholder="Password">
+                </div>
+                
+                <div class="form-group">
+                <h6>이름</h6>
+                  <input type="text" class="form-control form-control-lg" id="user_name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                  <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                <h6>이메일</h6>
+                  <input type="email" class="form-control form-control-lg" id="user_email" placeholder="E-Mail">
+                </div>
+                <div class="form-group"><!--이거 뺄 수 있나 알아보자-->
+                <h6>거주 국가</h6>
+                  <select class="form-control form-control-lg" id="user_country">
                     <option>Country</option>
                     <option>United States of America</option>
                     <option>United Kingdom</option>
@@ -47,24 +60,16 @@
                     <option>Argentina</option>
                   </select>
                 </div>
-                
-                
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                <div class="form-group"><!-- 글자수 제한 알아보기 -->
+                <h6>생일</h6>
+                  <input type="text" class="form-control form-control-lg" id="user_birth" placeholder="1995">
                 </div>
-                <div class="mb-4">
-                  <div class="form-check">
-                    <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      I agree to all Terms & Conditions
-                    </label>
-                  </div>
-                </div>
+                
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="login.html" class="text-primary">Login</a>
+                  이미 계정이 있나요? <a href="login.html" class="text-primary">Login</a>
                 </div>
               </form>
             </div>

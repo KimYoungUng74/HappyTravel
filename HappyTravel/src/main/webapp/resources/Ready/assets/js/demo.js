@@ -1166,7 +1166,7 @@ $(".mapcontainer").mapael({
             "value": "141930000",
             "href": "#",
             "tooltip": {
-                "content": "<span style=\"font-weight:bold;\">Russian Federation<\/span><br \/>"
+                "content": "<span style=\"font-weight:bold;\">Russia<\/span><br \/>"
             }
         },
         "RW": {

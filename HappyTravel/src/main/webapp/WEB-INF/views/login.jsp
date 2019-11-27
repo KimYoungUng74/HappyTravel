@@ -26,16 +26,16 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <img src="resources/Ready/assets/img/logo.png" alt="logo">HappyTravel
+                <img src="resources/Ready/assets/img/loginLogo.png" alt="logo">
               </div>
               <h4>Hello! let's go Happy Travel!!</h4>
-              <h6 class="font-weight-light">로그인하세요.</h6>
+              <h5 class="font-weight-light">로그인하세요.</h5>
               <form class="pt-3">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Username">
+                  <input type="text" class="form-control form-control-lg" id="user_id" placeholder="UserID">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+                  <input type="password" class="form-control form-control-lg" id="user_pw" placeholder="Password">
                 </div>
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
