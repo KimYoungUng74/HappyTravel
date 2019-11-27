@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Ready Bootstrap Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -15,9 +16,11 @@
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
+				
 				<a href="index.html" class="logo">
-					HappyTravel
+					<img src="resources/Ready/assets/img/logo.png" alt="user-img" width="36" class="img-circle"> HappyTravel
 				</a>
+		
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -50,11 +53,11 @@
 						</li>
 						
 						<li class="nav-item dropdown">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >Hizrian</span></span> </a>
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="resources/Ready/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span >Hizrian</span></span> </a>
 							<ul class="dropdown-menu dropdown-user">
 								<li>
 									<div class="user-box">
-										<div class="u-img"><img src="assets/img/profile.jpg" alt="user"></div>
+										<div class="u-img"><img src="resources/Ready/assets/img/profile.jpg" alt="user"></div>
 										<div class="u-text">
 											<h4>Hizrian</h4>
 											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -79,7 +82,7 @@
 				<div class="scrollbar-inner sidebar-wrapper">
 					<div class="user">
 						<div class="photo">
-							<img src="assets/img/profile.jpg">
+							<img src="resources/Ready/assets/img/profile.jpg">
 						</div>
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -508,7 +511,7 @@
 	</div>
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" charset="utf-8"></script>
+
 <script src="<c:url value='resources/Ready/assets/js/core/jquery.3.2.1.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/core/popper.min.js'/>"></script>

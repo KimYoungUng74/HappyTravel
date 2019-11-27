@@ -92,7 +92,7 @@ $(".mapcontainer").mapael({
 		name : "world_countries",
 		zoom: {
 			enabled: true,
-			maxLevel: 10
+			maxLevel: 20
 		},
 		defaultPlot: {
 			attrs: {
