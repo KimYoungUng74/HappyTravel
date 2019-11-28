@@ -15,4 +15,6 @@ public interface IUserDao {
     public UserDTO viewUser(UserDTO dto);
     // 회원 로그아웃
     public void logout(HttpSession session);
+    // 회원 수정
+    public void modify(UserDTO dto);
 }

@@ -102,6 +102,15 @@ public class UserController {
 	public String userModify(Locale locale, Model model) {
 		return "userModify";
 	}
+	
+	// 회원 정보 수정 처리
+		@RequestMapping(value = "userModifyOk.do", method = RequestMethod.POST)
+		public String userModifyOk(Locale locale, UserDTO dto) {
+			userSer.modify(dto);
+			System.out.println("회원정보 수정 되었음");
+
+			return "home";
+		}
 
 	/*
 	 * // login.jsp에서 form태그의 action을 통해 loginOk.do로 들어오게되면

@@ -35,7 +35,7 @@
 							</div>
 							<h4>회원 정보 수정</h4>
 							<h6 class="font-weight-light">회원님의 정보를 수정하세요!</h6>
-							<form class="pt-3" action="signupOk.do" method="post" name="signupform">
+							<form class="pt-3" action="userModifyOk.do" method="post" name="signupform">
 								<div class="form-group">
 									<h6>아이디</h6>
 									<input type="text" class="form-control form-control-lg"

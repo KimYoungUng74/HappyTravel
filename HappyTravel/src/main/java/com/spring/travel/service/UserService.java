@@ -51,5 +51,11 @@ public class UserService implements IUserService {
         // 세션 정보를 초기화 시킴
         session.invalidate();
 	}
+
+	@Override
+	public void modify(UserDTO dto) {
+		// TODO Auto-generated method stub
+		dao.modify(dto);
+	}
 	
 }

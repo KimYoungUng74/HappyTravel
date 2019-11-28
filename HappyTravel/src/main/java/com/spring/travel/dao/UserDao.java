@@ -44,6 +44,13 @@ public class UserDao implements IUserDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void modify(UserDTO dto) {
+		// TODO Auto-generated method stub
+		dto.setUser_pw(SHA256.getSHA256(dto.getUser_pw()));
+		mybatis.update("UserMapper.modify", dto);
+	}
 	
 	
 	

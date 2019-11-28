@@ -19,5 +19,8 @@ public interface IUserService {
     // 회원 로그아웃
     public void logout(HttpSession session);
     
+    // 회원 정보 수정
+    public void modify(UserDTO dto);
+    
 }
 
