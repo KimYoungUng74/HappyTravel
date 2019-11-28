@@ -61,6 +61,7 @@ public class CustomValidator {
 		model.addAttribute("userID" ,userID);
 		model.addAttribute("userName" ,userName);
 		model.addAttribute("is_root" ,is_root);
+		
 		//리퀘스트는 단순히 컨트롤러에서 사용하려고 넣었음
 		request.setAttribute("userID_setting" ,userID);
 		request.setAttribute("userName_setting" ,userName);

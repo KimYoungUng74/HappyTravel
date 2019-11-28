@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +20,9 @@
 	href="<c:url value='resources/Ready/assets/css/demo.css'/>">
 </head>
 <body>
+ <c:if test="${msg == 'logout'}">
+ 	 <script> alert("로그아웃 되었습니다.");</script> 
+ </c:if>
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
@@ -55,40 +58,34 @@
 						</div>
 					</form>
 					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-						<%
-							if(false) {
-						%>
-
-						<li class="nav-item dropdown"><a
-							class="dropdown-toggle profile-pic" data-toggle="dropdown"
-							href="#" aria-expanded="false"><span>이름 들어가는곳</span></span> </a>
-							<ul class="dropdown-menu dropdown-user">
-								<li>
-									<div class="user-box">
-										<div class="u-text">
-											<h4>이름 들어가는곳</h4>
-											<p class="text-muted">이메일 들어가는곳</p>
-										</div>
-									</div>
-								</li>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="ti-user"></i>내정보</a>
-								<a class="dropdown-item" href="#"></i>내 게시물</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="fa fa-power-off"></i>
-									Logout</a>
-							</ul> <!-- /.dropdown-user --></li>
-
-						<%
-							} else {
-						%>
-
-						<button class="btn btn btn-default loginButton"
-							onclick="location.href='login.do'">로그인</button>
-
-						<%
-							}
-						%>
+						<c:choose>
+							<c:when test="${sessionScope.userId == null}">
+								<button class="btn btn btn-default loginButton"
+									onclick="location.href='login.do'">로그인</button>
+							</c:when>
+							<c:otherwise>
+								<li class="nav-item dropdown"><a
+									class="dropdown-toggle profile-pic" data-toggle="dropdown"
+									href="#" aria-expanded="false"><span>${sessionScope.userId}님
+											환영합니다. </span></span> </a>
+									<ul class="dropdown-menu dropdown-user">
+										<li>
+											<div class="user-box">
+												<div class="u-text">
+													<h4>${sessionScope.userName}</h4>
+													<p class="text-muted">${sessionScope.userEmail}</p>
+												</div>
+											</div>
+										</li>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="passworldCheck.do"><i class="ti-user"></i>내정보</a>
+										<a class="dropdown-item" href="#"></i>내 게시물</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="logout.do"><i
+											class="fa fa-power-off"></i> Logout</a>
+									</ul> <!-- /.dropdown-user --></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>
 
 				</div>
@@ -96,44 +93,41 @@
 		</div>
 		<div class="sidebar">
 			<div class="scrollbar-inner sidebar-wrapper">
-				<%
-				if(false) {
-			%>
-				<div class="user">
-					<div class="photo">
-						<img src="resources/Ready/assets/img/logo.png">
-					</div>
-					<div class="info">
-						<a class="" data-toggle="collapse" href="#collapseExample"
-							aria-expanded="true"> <span> 이름들어가는곳 <span
-								class="user-level">회원 등급</span> <span class="caret"></span>
-						</span>
-						</a>
-						<div class="clearfix"></div>
-
-						<div class="collapse in" id="collapseExample" aria-expanded="true"
-							style="">
-							<ul class="nav">
-								<li><a href="#profile"> <span class="link-collapse">내정보</span>
-								</a></li>
-								<li><a href="#edit"> <span class="link-collapse">내
-											게시물</span>
-								</a></li>
-								<li><a href="#settings"> <span class="link-collapse">로그아웃</span>
-								</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<%
-				} else {
-			%>
-					<button class="btn btn btn-default" style="width: 80%; height: 60px; margin: 20px;"
+				<c:choose>
+					<c:when test="${sessionScope.userId == null}">
+						<button class="btn btn btn-default"
+							style="width: 80%; height: 60px; margin: 20px;"
 							onclick="location.href='login.do'">로그인</button>
-				<%
-				}
-			%>
+					</c:when>
+					<c:otherwise>
+						<div class="user">
+							<div class="photo">
+								<img src="resources/Ready/assets/img/logo.png">
+							</div>
+							<div class="info">
+								<a class="" data-toggle="collapse" href="#collapseExample"
+									aria-expanded="true"> <span>${sessionScope.userName}
+										<span class="user-level">${sessionScope.userEmail} </span> <span
+										class="caret"></span>
+								</span>
+								</a>
+								<div class="clearfix"></div>
 
+								<div class="collapse in" id="collapseExample"
+									aria-expanded="true" style="">
+									<ul class="nav">
+										<li><a href="passworldCheck.do"> <span class="link-collapse">내정보</span>
+										</a></li>
+										<li><a href="#edit"> <span class="link-collapse">내 게시물</span>
+										</a></li>
+										<li><a href="logout.do"> <span class="link-collapse">로그아웃</span>
+										</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
 				<ul class="nav">
 					<li class="nav-item"><a href="index.html">
 							<p>여행정보</p> <span class="badge badge-count">5</span>
@@ -326,175 +320,91 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header ">
-									<h4 class="card-title">Table</h4>
-									<p class="card-category">Users Table</p>
+									<h4 class="card-title">여행 정보</h4>
+									<p class="card-category">가고싶은 나라의 여행 정보를 찾아보세요!</p>
 								</div>
 								<div class="card-body">
-									<table
-										class="table table-head-bg-success table-striped table-hover">
+									<table class="table table-striped  table-striped table-hover">
 										<thead>
 											<tr>
-												<th scope="col">#</th>
-												<th scope="col">First</th>
-												<th scope="col">Last</th>
-												<th scope="col">Handle</th>
+												<th scope="col">글번호</th>
+												<th scope="col">글제목</th>
+												<th scope="col">나라</th>
+												<th scope="col">별점</th>
+												<th scope="col">조회수</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td>1</td>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
+												<td>나만의 니뽄 여행기</td>
+												<td>Japan</td>
+												<td>4</td>
+												<td>507</td>
 											</tr>
 											<tr>
 												<td>2</td>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
+												<td>240만원으로 유럽여행</td>
+												<td>France</td>
+												<td>5</td>
+												<td>1552</td>
 											</tr>
 											<tr>
 												<td>3</td>
-												<td colspan="2">Larry the Bird</td>
-												<td>@twitter</td>
+												<td>남정네 둘이서 중구 뿌수기</td>
+												<td>China</td>
+												<td>4</td>
+												<td>826</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
+								<div class="card-footer ">여기에 페이징?_?</div>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="card card-tasks">
 								<div class="card-header ">
-									<h4 class="card-title">Tasks</h4>
-									<p class="card-category">To Do List</p>
+									<h4 class="card-title">여행 후기</h4>
+									<p class="card-category">생생한 여행 후기로 자신만의 여행 계획을 짜보세요!</p>
 								</div>
-								<div class="card-body ">
-									<div class="table-full-width">
-										<table class="table">
-											<thead>
-												<tr>
-													<th>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input  select-all-checkbox"
-																type="checkbox" data-select="checkbox"
-																data-target=".task-select"> <span
-																class="form-check-sign"></span>
-															</label>
-														</div>
-													</th>
-													<th>Task</th>
-													<th>Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Planning new project structure</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Update Fonts</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Add new Post</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														<div class="form-check">
-															<label class="form-check-label"> <input
-																class="form-check-input task-select" type="checkbox">
-																<span class="form-check-sign"></span>
-															</label>
-														</div>
-													</td>
-													<td>Finalise the design proposal</td>
-													<td class="td-actions text-right">
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip"
-																title="Edit Task"
-																class="btn btn-link <btn-simple-primary">
-																<i class="la la-edit"></i>
-															</button>
-															<button type="button" data-toggle="tooltip"
-																title="Remove" class="btn btn-link btn-simple-danger">
-																<i class="la la-times"></i>
-															</button>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+								<div class="card-body">
+									<table class="table table-striped  table-striped table-hover">
+										<thead>
+											<tr>
+												<th scope="col">글번호</th>
+												<th scope="col">글제목</th>
+												<th scope="col">나라</th>
+												<th scope="col">별점</th>
+												<th scope="col">조회수</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td>나만의 니뽄 여행기</td>
+												<td>Japan</td>
+												<td>4</td>
+												<td>507</td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>240만원으로 유럽여행</td>
+												<td>France</td>
+												<td>5</td>
+												<td>1552</td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>남정네 둘이서 중구 뿌수기</td>
+												<td>China</td>
+												<td>4</td>
+												<td>826</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-								<div class="card-footer ">
-									<div class="stats">
-										<i class="now-ui-icons loader_refresh spin"></i> Updated 3
-										minutes ago
-									</div>
-								</div>
+								<div class="card-footer ">여기에 페이징?_?</div>
 							</div>
 						</div>
 					</div>
@@ -547,7 +457,11 @@
 	</div>
 </body>
 
-
+<script type="text/javascript">
+	String
+	user_id = (String)
+	session.getAttribute("user_id");
+</script>
 
 
 <script

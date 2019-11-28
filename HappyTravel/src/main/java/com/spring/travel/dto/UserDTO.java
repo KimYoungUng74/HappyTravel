@@ -43,6 +43,12 @@ public class UserDTO {
 	public void setUser_birth(String user_birth) {
 		this.user_birth = user_birth;
 	}
+	@Override
+	public String toString() {
+		return "UserDTO [user_id=" + user_id + ", user_pw=" + user_pw + ", user_name=" + user_name + ", user_email="
+				+ user_email + ", user_country=" + user_country + ", user_birth=" + user_birth + "]";
+	}
+	
 	
 	
 	

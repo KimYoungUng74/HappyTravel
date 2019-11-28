@@ -1,5 +1,8 @@
 package com.spring.travel.dao;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,10 +25,26 @@ public class UserDao implements IUserDao {
 		dto.setUser_pw(SHA256.getSHA256(dto.getUser_pw()));
 		mybatis.insert("UserMapper.Signup", dto);
 	}
-	
-	
+
 	@Override
-	public UserDTO selectUser(UserDTO dto) {
-		return mybatis.selectOne("UserMapper.SelectUser",dto);
+	public boolean loginCheck(UserDTO dto) {
+		dto.setUser_pw(SHA256.getSHA256(dto.getUser_pw()));
+		String name = mybatis.selectOne("UserMapper.loginCheck", dto);
+        return (name == null) ? false : true;
 	}
+
+	@Override
+	public UserDTO viewUser(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("UserMapper.viewUser", dto);
+	}
+
+	@Override
+	public void logout(HttpSession session) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
 }

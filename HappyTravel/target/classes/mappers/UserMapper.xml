@@ -11,8 +11,21 @@
 		VALUES(#{user_id}, #{user_pw},#{user_name}, #{user_email}, #{user_country}, #{user_birth})
 	</insert>
 	
-	<select id="SelectUser" parameterType="UserDTO" resultType="UserDTO">
-		SELECT * FROM USER WHERE userID=#{userID}
+	<select id="loginCheck" parameterType="UserDTO" resultType="String">
+		SELECT user_name FROM USER
+        WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+	</select>
+	
+
+	<select id="viewUser" parameterType="UserDTO" resultType="UserDTO">
+		SELECT 
+            user_id,
+            user_name,
+            user_email,
+            user_country,
+            user_birth
+        FROM USER
+        WHERE user_id = #{user_id} AND user_pw = #{user_pw}
 	</select>
 	
 </mapper>

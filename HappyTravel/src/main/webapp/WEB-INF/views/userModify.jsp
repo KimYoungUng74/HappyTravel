@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,13 +33,13 @@
 							<div class="brand-logo">
 								<a href="home.do" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
 							</div>
-							<h4>회원가입</h4>
-							<h6 class="font-weight-light">간단한 정보를 입력하고 회원가입을 완료하세요.</h6>
+							<h4>회원 정보 수정</h4>
+							<h6 class="font-weight-light">회원님의 정보를 수정하세요!</h6>
 							<form class="pt-3" action="signupOk.do" method="post" name="signupform">
 								<div class="form-group">
 									<h6>아이디</h6>
 									<input type="text" class="form-control form-control-lg"
-										name="user_id" placeholder="ID">
+										name="user_id" readonly="readonly" value="${sessionScope.userId}">
 								</div>
 								<div class="form-group">
 									<h6>비밀번호</h6>
@@ -50,15 +50,14 @@
 								<div class="form-group">
 									<h6>이름</h6>
 									<input type="text" class="form-control form-control-lg"
-										name="user_name" placeholder="Name">
+										name="user_name" placeholder="Name" value="${sessionScope.userName}">
 								</div>
 								<div class="form-group">
 									<h6>이메일</h6>
 									<input type="email" class="form-control form-control-lg"
-										name="user_email" placeholder="E-Mail">
+										name="user_email" placeholder="E-Mail" value="${sessionScope.userEmail}">
 								</div>
 								<div class="form-group">
-									<!--이거 뺄 수 있나 알아보자-->
 									<h6>거주 국가</h6>
 									<select name="region" class="form-control form-control-lg"
 										onChange="populateCountry(document.signupform,document.signupform.region.options[document.signupform.region.selectedIndex].value)">
@@ -81,13 +80,10 @@
 									<!-- 글자수 제한 알아보기 -->
 									<h6>생일</h6>
 									<input type="text" class="form-control form-control-lg"
-										name="user_birth" placeholder="1995">
+										name="user_birth" placeholder="1995" value="${user_birth}">
 								</div>
 								<input type="submit" class="btn btn-block btn-primary btn-lg"
-									value="회원가입">
-								<div class="text-center mt-4 font-weight-light">
-									이미 계정이 있나요? <a href="login.html" class="text-primary">Login</a>
-								</div>
+									value="회원 정보 수정">
 							</form>
 						</div>
 					</div>

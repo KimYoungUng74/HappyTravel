@@ -10,16 +10,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.travel.dto.UserDTO;
 import com.spring.travel.service.IUserService;
+import com.spring.travel.service.UserService;
 
 @Controller
 public class UserController {
 
-	// signupOk.do가 요청되면 생성해 놓은 service로 SQL문 실행
+	// 회원가입 화면
 	@RequestMapping(value = "signup.do")
 	public String signup(Locale locale, Model model) {
 		return "signup";
@@ -28,6 +31,7 @@ public class UserController {
 	@Autowired
 	IUserService userSer;
 
+	// 회원 가입 처리
 	@RequestMapping(value = "signupOk.do", method = RequestMethod.POST)
 	public String signupOk(Locale locale, UserDTO dto) {
 		userSer.signupUser(dto);
@@ -35,19 +39,70 @@ public class UserController {
 
 		return "home";
 	}
-	
-	@RequestMapping(value = "logOut.ing")
-	public String logOut(HttpServletRequest request) {
-		request.getSession().invalidate();
-		return "redirect:index.do";
-	}
-	
-	// login.do가 요청되면 생성해 놓은 service로 SQL문 실행
+
+	// 로그인 화면
 	@RequestMapping(value = "login.do")
 	public String login(Locale locale, Model model) {
 		return "login";
 	}
-	
+
+	// 로그인 처리
+	@RequestMapping(value = "loginCheck.do")
+	public ModelAndView loginCheck(@ModelAttribute UserDTO dto, HttpSession sessison) {
+		boolean result = userSer.loginCheck(dto, sessison);
+		ModelAndView mav = new ModelAndView();
+		if (result) { // 로그인 성공
+			// main.jsp로 이동
+			mav.setViewName("home");
+			mav.addObject("msg", "success");
+		} else { // 로그인 실패
+			// login.jsp로 이동
+			mav.setViewName("login");
+			mav.addObject("msg", "failure");
+		}
+		return mav;
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "logout.do")
+	public ModelAndView logOut(HttpSession session) {
+		userSer.logout(session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("home");
+		mav.addObject("msg", "logout");
+		return mav;
+	}
+
+	// 비밀번호 확인 페이지
+	@RequestMapping(value = "passworldCheck.do")
+	public String passworldCheck(Locale locale, Model model) {
+		return "passworldCheck";
+	}
+
+	// 비밀번호 확인
+	@RequestMapping(value = "passworldCheck.ing")
+	public ModelAndView passworldCheck(@ModelAttribute UserDTO dto, HttpSession sessison) {
+		boolean result = userSer.loginCheck(dto, sessison);
+		ModelAndView mav = new ModelAndView();
+		if (result) { // 비밀번호 확인
+			UserDTO dto2 = userSer.viewUser(dto);
+			mav.setViewName("userModify");
+			mav.addObject("msg", "success");
+			mav.addObject("user_country", dto2.getUser_country());
+			mav.addObject("user_birth", dto2.getUser_birth());
+		} else { // 비밀번호 불일치
+			mav.setViewName("passworldCheck");
+			mav.addObject("msg", "failure");
+		}
+		return mav;
+	}
+
+	// 회원 정보 수정
+	@RequestMapping(value = "userModify.do")
+	public String userModify(Locale locale, Model model) {
+		return "userModify";
+	}
+
 	/*
 	 * // login.jsp에서 form태그의 action을 통해 loginOk.do로 들어오게되면
 	 * 
@@ -93,6 +148,5 @@ public class UserController {
 	 * out.println("<script>location.href='index.do'</script>"); out.flush(); return
 	 * "index"; }
 	 */
-	
 
 }
