@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- [DB연결 사용법] 1. SQL문 작성 하고 다음과 같은 양식으로 만들어준다.-->
+<!-- sql문 작성 -->
+<mapper namespace="UserMapper">
+	<!-- id는 마음대로 작성 prarameter는 실제DTO클래스 -->
+	
+	<insert id="Signup" parameterType="UserDTO">
+		INSERT INTO USER
+		VALUES(#{user_id}, #{user_pw},#{user_name}, #{user_email}, #{user_country}, #{user_birth})
+	</insert>
+	
+	<select id="SelectUser" parameterType="UserDTO" resultType="UserDTO">
+		SELECT * FROM USER WHERE userID=#{userID}
+	</select>
+	
+</mapper>
