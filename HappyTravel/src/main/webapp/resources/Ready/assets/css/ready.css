@@ -5706,6 +5706,13 @@ body {
   right: 12px;
 }
 
+.loginButton {
+	margin:8px;
+	vertical-align: middle;
+  	margin-left: 0;
+  	color: #555;
+}
+
 .navbar-header {
   padding: 0px 15px;
 }

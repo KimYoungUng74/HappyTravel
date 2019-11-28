@@ -401,7 +401,7 @@ $(".mapcontainer").mapael({
         },
         "CN": {
             "value": "13",
-            "href": "",
+            "href": "signup.do",
             "tooltip": {
                 "content": "<span style=\"font-weight:bold;\">China<\/span><br \/>"
             }
