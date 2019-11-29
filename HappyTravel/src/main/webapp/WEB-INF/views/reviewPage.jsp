@@ -137,7 +137,7 @@
 					<li class="nav-item"><a href="index.html">
 							<p>여행정보</p> <span class="badge badge-count">5</span>
 					</a></li>
-					<li class="nav-item active"><a href="index.html">
+					<li class="nav-item active"><a href="review.do">
 							<p>여행후기</p> <span class="badge badge-count">5</span>
 					</a></li>
 				</ul>
@@ -161,33 +161,32 @@
 									<div class="col-md-6">
 										<form name="signupform">
 											<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<select name="region" class="form-control form-control-lg"
-														onChange="populateCountry(document.signupform,document.signupform.region.options[document.signupform.region.selectedIndex].value)">
-														<option selected value=''>Select Region</option>
-														<option value='all'>All</option>
-														<option value='asia'>Asia</option>
-														<option value='africa'>Africa</option>
-														<option value='australia'>Australia</option>
-														<option value='europe'>Europe</option>
-														<option value='middleeast'>Middle East</option>
-														<option value='lamerica'>Latin America</option>
-														<option value='namerica'>North America</option>
-														<option value='samerica'>South America</option>
-													</select>
+												<div class="col-md-6">
+													<div class="form-group">
+														<select name="region" class="form-control form-control-lg"
+															onChange="populateCountry(document.signupform,document.signupform.region.options[document.signupform.region.selectedIndex].value)">
+															<option selected value=''>Select Region</option>
+															<option value='all'>All</option>
+															<option value='asia'>Asia</option>
+															<option value='africa'>Africa</option>
+															<option value='australia'>Australia</option>
+															<option value='europe'>Europe</option>
+															<option value='middleeast'>Middle East</option>
+															<option value='lamerica'>Latin America</option>
+															<option value='namerica'>North America</option>
+															<option value='samerica'>South America</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<select name="user_country"
+															class="form-control form-control-lg" onChange="">
+															<option value=''>← Select Region</option>
+														</select>
+													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<select name="user_country"
-														class="form-control form-control-lg"
-														onChange="">
-														<option value=''>← Select Region</option>
-													</select>
-												</div>
-											</div>
-												</div>
 										</form>
 									</div>
 
@@ -230,7 +229,22 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer ">여기에 페이징?_?</div>
+							<div class="card-footer ">
+								<div class="col-md-12">
+									<div class="row">
+
+										<div class="col-md-11">여기에 페이징?_?</div>
+
+										<div class="col-md-1">
+											<c:if test="${sessionScope.userId != null}">
+												<button class="btn btn btn-default"
+								
+													onclick="location.href='reviewWrite.do'">글쓰기</button>
+											</c:if>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

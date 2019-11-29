@@ -20,9 +20,11 @@
 	href="<c:url value='resources/Ready/assets/css/demo.css'/>">
 </head>
 <body>
- <c:if test="${msg == 'logout'}">
- 	 <script> alert("로그아웃 되었습니다.");</script> 
- </c:if>
+	<c:if test="${msg == 'logout'}">
+		<script>
+			alert("로그아웃 되었습니다.");
+		</script>
+	</c:if>
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
@@ -78,7 +80,8 @@
 											</div>
 										</li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="passworldCheck.do"><i class="ti-user"></i>내정보</a>
+										<a class="dropdown-item" href="passworldCheck.do"><i
+											class="ti-user"></i>내정보</a>
 										<a class="dropdown-item" href="#"></i>내 게시물</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="logout.do"><i
@@ -116,9 +119,11 @@
 								<div class="collapse in" id="collapseExample"
 									aria-expanded="true" style="">
 									<ul class="nav">
-										<li><a href="passworldCheck.do"> <span class="link-collapse">내정보</span>
+										<li><a href="passworldCheck.do"> <span
+												class="link-collapse">내정보</span>
 										</a></li>
-										<li><a href="#edit"> <span class="link-collapse">내 게시물</span>
+										<li><a href="#edit"> <span class="link-collapse">내
+													게시물</span>
 										</a></li>
 										<li><a href="logout.do"> <span class="link-collapse">로그아웃</span>
 										</a></li>
@@ -132,7 +137,7 @@
 					<li class="nav-item"><a href="index.html">
 							<p>여행정보</p> <span class="badge badge-count">5</span>
 					</a></li>
-					<li class="nav-item"><a href="index.html">
+					<li class="nav-item active"><a href="review.do">
 							<p>여행후기</p> <span class="badge badge-count">5</span>
 					</a></li>
 				</ul>
@@ -141,117 +146,137 @@
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
-					<h4 class="page-title">여행 정보</h4>
-					
-					
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header ">
-									<h4 class="card-title">여행 정보</h4>
-									<p class="card-category">가고싶은 나라의 여행 정보를 찾아보세요!</p>
-								</div>
-								<div class="card-body">
-									<table class="table table-striped  table-striped table-hover">
-										<thead>
-											<tr>
-												<th scope="col">글번호</th>
-												<th scope="col">글제목</th>
-												<th scope="col">나라</th>
-												<th scope="col">별점</th>
-												<th scope="col">조회수</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>나만의 니뽄 여행기</td>
-												<td>Japan</td>
-												<td>4</td>
-												<td>507</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>240만원으로 유럽여행</td>
-												<td>France</td>
-												<td>5</td>
-												<td>1552</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>남정네 둘이서 중구 뿌수기</td>
-												<td>China</td>
-												<td>4</td>
-												<td>826</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="card-footer ">여기에 페이징?_?</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="card card-tasks">
-								<div class="card-header ">
-									<h4 class="card-title">여행 후기</h4>
-									<p class="card-category">생생한 여행 후기로 자신만의 여행 계획을 짜보세요!</p>
-								</div>
-								<div class="card-body">
-									<table class="table table-striped  table-striped table-hover">
-										<thead>
-											<tr>
-												<th scope="col">글번호</th>
-												<th scope="col">글제목</th>
-												<th scope="col">나라</th>
-												<th scope="col">별점</th>
-												<th scope="col">조회수</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>나만의 니뽄 여행기</td>
-												<td>Japan</td>
-												<td>4</td>
-												<td>507</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>240만원으로 유럽여행</td>
-												<td>France</td>
-												<td>5</td>
-												<td>1552</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>남정네 둘이서 중구 뿌수기</td>
-												<td>China</td>
-												<td>4</td>
-												<td>826</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="card-footer ">여기에 페이징?_?</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul class="nav">
+					<h4 class="page-title">여행 후기</h4>
 
-						</ul>
-					</nav>
-					<div class="copyright ml-auto">
-						2019, made in <i class="la la-heart heart text-danger"></i> Hero
-					</div>
+
+
+						
+								<div class="row">
+									<div class="col-md-12">
+										<div class="card">
+											<div class="card-header">
+												<div class="card-title">글쓰기</div>
+											</div>
+											<div class="card-body">
+												<div class="form-group">
+													<label for="email">Email Address</label> <input
+														type="email" class="form-control" id="email"
+														placeholder="Enter Email"> <small id="emailHelp"
+														class="form-text text-muted">We'll never share
+														your email with anyone else.</small>
+												</div>
+												<div class="form-group">
+													<label for="password">Password</label> <input
+														type="password" class="form-control" id="password"
+														placeholder="Password">
+												</div>
+												<div class="form-group form-inline">
+													<label for="inlineinput" class="col-md-3 col-form-label">Inline
+														Input</label>
+													<div class="col-md-9 p-0">
+														<input type="text" class="form-control input-full"
+															id="inlineinput" placeholder="Enter Input">
+													</div>
+												</div>
+												<div class="form-group has-success">
+													<label for="successInput">Success Input</label> <input
+														type="text" id="successInput" value="Success"
+														class="form-control">
+												</div>
+												<div class="form-group has-error has-feedback">
+													<label for="errorInput">Error Input</label> <input
+														type="text" id="errorInput" value="Error"
+														class="form-control"> <small id="emailHelp"
+														class="form-text text-muted">Please provide a
+														valid informations.</small>
+												</div>
+												<div class="form-group">
+													<label for="disableinput">Disable Input</label> <input
+														type="text" class="form-control" id="disableinput"
+														placeholder="Enter Input" disabled="">
+												</div>
+												<div class="form-check">
+													<label>Gender</label><br> <label
+														class="form-radio-label"> <input
+														class="form-radio-input" type="radio" name="optionsRadios"
+														value="" checked=""> <span class="form-radio-sign">Male</span>
+													</label> <label class="form-radio-label ml-3"> <input
+														class="form-radio-input" type="radio" name="optionsRadios"
+														value=""> <span class="form-radio-sign">Female</span>
+													</label>
+												</div>
+												<div class="form-group">
+													<label class="control-label"> Static </label>
+													<!---->
+													<p class="form-control-static">hello@themekita.com</p>
+													<!---->
+													<!---->
+												</div>
+												<div class="form-group">
+													<label for="exampleFormControlSelect1">Example
+														select</label> <select class="form-control"
+														id="exampleFormControlSelect1">
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+														<option>5</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="exampleFormControlSelect2">Example
+														multiple select</label> <select multiple="" class="form-control"
+														id="exampleFormControlSelect2">
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+														<option>5</option>
+													</select>
+												</div>
+												<div class="form-group">
+													<label for="exampleFormControlFile1">Example file
+														input</label> <input type="file" class="form-control-file"
+														id="exampleFormControlFile1">
+												</div>
+												<div class="form-group">
+													<label for="comment">Comment</label>
+													<textarea class="form-control" id="comment" rows="5">
+												</textarea>
+												</div>
+												<div class="form-check">
+													<label class="form-check-label"> <input
+														class="form-check-input" type="checkbox" value="">
+														<span class="form-check-sign">Agree with terms and
+															conditions</span>
+													</label>
+												</div>
+											</div>
+											<div class="card-action">
+												<button class="btn btn-success">Submit</button>
+												<button class="btn btn-danger">Cancel</button>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+
+				
 				</div>
-			</footer>
+				<footer class="footer">
+					<div class="container-fluid">
+						<nav class="pull-left">
+							<ul class="nav">
+
+							</ul>
+						</nav>
+						<div class="copyright ml-auto">
+							2019, made in <i class="la la-heart heart text-danger"></i> Hero
+						</div>
+					</div>
+				</footer>
+			</div>
 		</div>
-	</div>
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
@@ -303,10 +328,6 @@
 <script
 	src="<c:url value='resources/Ready/assets/js/plugin/chartist/chartist.min.js'/>"></script>
 <script
-	src="<c:url value='resources/Ready/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js'/>"></script>
-<script
-	src="<c:url value='resources/Ready/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'/>"></script>
-<script
 	src="<c:url value='resources/Ready/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js'/>"></script>
 <script
 	src="<c:url value='resources/Ready/assets/js/plugin/jquery-mapael/jquery.mapael.min.js'/>"></script>
@@ -319,20 +340,66 @@
 <script src="<c:url value='resources/Ready/assets/js/ready.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/demo.js'/>"></script>
 
-<!-- <script>
-        $(function(){
-            $(".map").on('mousewheel DOMMouseScroll', function(e) {
-            	
-                var E = e.originalEvent;
-                delta = 0;
-                console.log(E);
-                if (E.detail>0) {
-                	alert("꾸꾸");
-                }else{
-                    
-                };
-            });
-        });
-   </script>
- -->
+<script type="text/javascript">
+	var africaArray = new Array("('Select country','',true,true)",
+			"('Algeria')", "('Angola')", "('Burundi')", "('Cameroon')",
+			"('Congo')", "('Eritrea')", "('Ethiopia')", "('Gambia')",
+			"('Ghana')", "('Guinea')", "('Kenya')", "('Libya')",
+			"('Madagascar')", "('Morocco')", "('Mozambique')", "('Namibia')",
+			"('Nigeria')", "('Rwanda')", "('Senegal')", "('Sierra Leone')",
+			"('Somalia')", "('South Africa')", "('Sudan')", "('Tanzania')",
+			"('Tunisia')", "('Uganda')", "('Zaire')", "('Zambia')",
+			"('Zimbabwe')", "('Other')");
+	var middleeastArray = new Array("('Select country','',true,true)",
+			"('Egypt')", "('Iran')", "('Iraq')", "('Israel')", "('Jordan')",
+			"('Kuwait')", "('Lebanon')", "('Oman')", "('Saudi Arabia')",
+			"('Syria')", "('Turkey')", "('U. A. Emirates')", "('Other')");
+	var asiaArray = new Array("('Select country','',true,true)", "('Armenia')",
+			"('Bangladesh')", "('Cambodia')", "('China')", "('India')",
+			"('Indonesia')", "('Japan')", "('Malaysia')", "('Myanmar')",
+			"('Nepal')", "('Pakistan')", "('Philippines')", "('Singapore')",
+			"('South Korea')", "('Sri Lanka')", "('Taiwan')", "('Thailand')",
+			"('Uzbekistan')", "('Vietnam')", "('Other')");
+	var europeArray = new Array("('Select country','',true,true)",
+			"('Albania')", "('Austria')", "('Belarus')", "('Belgium')",
+			"('Bosnia')", "('Bulgaria')", "('Croatia')", "('Cyprus')",
+			"('Czech Rep.')", "('Denmark')", "('Estonia')", "('Finland')",
+			"('France')", "('Germany')", "('Greece')", "('Hungary')",
+			"('Iceland')", "('Ireland')", "('Italy')", "('Latvia')",
+			"('Liechtenstein')", "('Lithuania')", "('Luxembourg')",
+			"('Macedonia')", "('Malta')", "('Monaco')", "('Netherlands')",
+			"('Norway')", "('Poland')", "('Portugal')", "('Romania')",
+			"('Russia')", "('Slovakia')", "('Slovenia')", "('Spain')",
+			"('Sweden')", "('Switzerland')", "('Ukraine')",
+			"('United Kingdom')", "('Other')");
+	var australiaArray = new Array("('Select country','',true,true)",
+			"('Australia')", "('New Zealand')", "('Other')");
+	var lamericaArray = new Array("('Select country','',true,true)",
+			"('Costa Rica')", "('Cuba')", "('El Salvador')", "('Guatemala')",
+			"('Haiti')", "('Jamaica')", "('Mexico')", "('Panama')", "('Other')");
+	var namericaArray = new Array("('Select country','',true,true)",
+			"('Canada')", "('USA')", "('Other')");
+	var samericaArray = new Array("('Select country','',true,true)",
+			"('Argentina')", "('Bolivia')", "('Brazil')", "('Chile')",
+			"('Colombia')", "('Ecuador')", "('Paraguay')", "('Peru')",
+			"('Suriname')", "('Uruguay')", "('Venezuela')", "('Other')");
+	function populateCountry(inForm, selected) {
+
+		if (selected == "all") {
+			alert("꾸꾸까까");
+		}
+
+		var selectedArray = eval(selected + "Array");
+		while (selectedArray.length < inForm.user_country.options.length) {
+			inForm.user_country.options[(inForm.user_country.options.length - 1)] = null;
+		}
+		for (var i = 0; i < selectedArray.length; i++) {
+			eval("inForm.user_country.options[i]=" + "new Option"
+					+ selectedArray[i]);
+		}
+		if (inForm.region.options[0].value == '') {
+			inForm.region.options[0] = null;
+		}
+	}
+</script>
 </html>

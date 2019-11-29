@@ -1,12 +1,12 @@
 package com.spring.travel.dto;
 
 public class UserDTO {
-	String user_id; 
-	String user_pw;
-	String user_name;
-	String user_email;
-	String user_country;
-	String user_birth;
+	private String user_id; 
+	private String user_pw;
+	private String user_name;
+	private String user_email;
+	private String user_country;
+	private String user_birth;
 	public String getUser_id() {
 		return user_id;
 	}
