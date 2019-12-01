@@ -17,13 +17,13 @@
 		FROM
 			review
 		ORDER BY
-			review_num desc,
-			reg_date desc
+			review_num ASC,
+			reg_date ASC
 	</select>
 	<!-- 리뷰 게시글 작성 -->
 	<insert id="insert">
 		INSERT INTO review (
-			review_num,
+			user_id,
 			user_name,
 			title,
 			contents,
@@ -31,7 +31,7 @@
 			rating,
 			reg_date
 		) VALUES (
-			(SELECT NVL(MAX(review_num)+1, 1)FROM review),
+			#{user_id},
 			#{user_name},
 			#{title},
 			#{contents},

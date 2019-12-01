@@ -159,12 +159,12 @@
 									</div>
 
 									<div class="col-md-6">
-										<form name="signupform">
+										<form name="reviewform">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<select name="region" class="form-control form-control-lg"
-															onChange="populateCountry(document.signupform,document.signupform.region.options[document.signupform.region.selectedIndex].value)">
+														<select name="region" class="form-control"
+															onChange="populateCountry(document.reviewform,document.reviewform.region.options[document.reviewform.region.selectedIndex].value)">
 															<option selected value=''>Select Region</option>
 															<option value='all'>All</option>
 															<option value='asia'>Asia</option>
@@ -181,7 +181,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<select name="user_country"
-															class="form-control form-control-lg" onChange="">
+															class="form-control" onChange="">
 															<option value=''>← Select Region</option>
 														</select>
 													</div>
@@ -197,35 +197,29 @@
 								<table class="table table-striped  table-striped table-hover">
 									<thead>
 										<tr>
-											<th scope="col">글번호</th>
-											<th scope="col">글제목</th>
-											<th scope="col">나라</th>
-											<th scope="col">별점</th>
-											<th scope="col">조회수</th>
+											<th>글번호</th>
+											<th>글제목</th>
+											<th>나라</th>
+											<th>글쓴이</th>
+											<th>글쓴 날짜</th>
+											<th>조회수</th>
+											<th>별점</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>나만의 니뽄 여행기</td>
-											<td>Japan</td>
-											<td>4</td>
-											<td>507</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>240만원으로 유럽여행</td>
-											<td>France</td>
-											<td>5</td>
-											<td>1552</td>
-										</tr>
-										<tr>
-											<td>3</td>
-											<td>남정네 둘이서 중국 뿌수기</td>
-											<td>China</td>
-											<td>4</td>
-											<td>826</td>
-										</tr>
+										<c:forEach var="row" items="${list}">
+											<tr>
+												<td>${row.review_num}</td>
+												<td><a href="view.do?review_num=${row.review_num}">${row.title}</a></td>
+												<td>${row.country}</td>
+												<td>${row.user_name}</td>
+												<td>
+													${row.reg_date}
+												</td>
+												<td>${row.hits}</td>
+												<td>${row.rating}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -233,12 +227,11 @@
 								<div class="col-md-12">
 									<div class="row">
 
-										<div class="col-md-11">여기에 페이징?_?</div>
+										<div class="col-md-10">여기에 페이징?_?</div>
 
-										<div class="col-md-1">
+										<div class="col-md-2">
 											<c:if test="${sessionScope.userId != null}">
-												<button class="btn btn btn-default"
-								
+												<button class="btn btn btn-default" style="float:right;"
 													onclick="location.href='reviewWrite.do'">글쓰기</button>
 											</c:if>
 										</div>
@@ -262,8 +255,6 @@
 				</div>
 			</div>
 		</footer>
-	</div>
-	</div>
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
@@ -371,11 +362,11 @@
 			"('Colombia')", "('Ecuador')", "('Paraguay')", "('Peru')",
 			"('Suriname')", "('Uruguay')", "('Venezuela')", "('Other')");
 	function populateCountry(inForm, selected) {
-		
-		if(selected=="all") {
+
+		if (selected == "all") {
 			alert("꾸꾸까까");
 		}
-		
+
 		var selectedArray = eval(selected + "Array");
 		while (selectedArray.length < inForm.user_country.options.length) {
 			inForm.user_country.options[(inForm.user_country.options.length - 1)] = null;
@@ -388,6 +379,5 @@
 			inForm.region.options[0] = null;
 		}
 	}
-
 </script>
 </html>

@@ -147,137 +147,109 @@
 			<div class="content">
 				<div class="container-fluid">
 					<h4 class="page-title">여행 후기</h4>
-
-
-
-						
-								<div class="row">
-									<div class="col-md-12">
-										<div class="card">
-											<div class="card-header">
-												<div class="card-title">글쓰기</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">글쓰기</div>
+								</div>
+								<form name="reviewform" method="post" action="reviewInsert.do">
+									<input type="hidden" name="user_id"
+										value="${sessionScope.userId}" />
+										<input type="hidden" name="user_name" value="${sessionScope.userName}"/>
+									<div class="card-body">
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-6">
+													<label for="email">리뷰 제목</label>
+												</div>
+												<div class="col-md-6">
+													<label for="email">나라 선택</label>
+												</div>
 											</div>
-											<div class="card-body">
-												<div class="form-group">
-													<label for="email">Email Address</label> <input
-														type="email" class="form-control" id="email"
-														placeholder="Enter Email"> <small id="emailHelp"
-														class="form-text text-muted">We'll never share
-														your email with anyone else.</small>
+											<div class="row">
+												<div class="col-md-6">
+													<input type="text" class="form-control" id="title"
+														name="title" placeholder="리뷰 제목">
 												</div>
-												<div class="form-group">
-													<label for="password">Password</label> <input
-														type="password" class="form-control" id="password"
-														placeholder="Password">
-												</div>
-												<div class="form-group form-inline">
-													<label for="inlineinput" class="col-md-3 col-form-label">Inline
-														Input</label>
-													<div class="col-md-9 p-0">
-														<input type="text" class="form-control input-full"
-															id="inlineinput" placeholder="Enter Input">
-													</div>
-												</div>
-												<div class="form-group has-success">
-													<label for="successInput">Success Input</label> <input
-														type="text" id="successInput" value="Success"
-														class="form-control">
-												</div>
-												<div class="form-group has-error has-feedback">
-													<label for="errorInput">Error Input</label> <input
-														type="text" id="errorInput" value="Error"
-														class="form-control"> <small id="emailHelp"
-														class="form-text text-muted">Please provide a
-														valid informations.</small>
-												</div>
-												<div class="form-group">
-													<label for="disableinput">Disable Input</label> <input
-														type="text" class="form-control" id="disableinput"
-														placeholder="Enter Input" disabled="">
-												</div>
-												<div class="form-check">
-													<label>Gender</label><br> <label
-														class="form-radio-label"> <input
-														class="form-radio-input" type="radio" name="optionsRadios"
-														value="" checked=""> <span class="form-radio-sign">Male</span>
-													</label> <label class="form-radio-label ml-3"> <input
-														class="form-radio-input" type="radio" name="optionsRadios"
-														value=""> <span class="form-radio-sign">Female</span>
-													</label>
-												</div>
-												<div class="form-group">
-													<label class="control-label"> Static </label>
-													<!---->
-													<p class="form-control-static">hello@themekita.com</p>
-													<!---->
-													<!---->
-												</div>
-												<div class="form-group">
-													<label for="exampleFormControlSelect1">Example
-														select</label> <select class="form-control"
-														id="exampleFormControlSelect1">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+												<div class="col-md-3">
+													<select name="region" class="form-control"
+														onChange="populateCountry(document.reviewform,document.reviewform.region.options[document.reviewform.region.selectedIndex].value)">
+														<option selected value=''>Select Region</option>
+														<option value='asia'>Asia</option>
+														<option value='africa'>Africa</option>
+														<option value='australia'>Australia</option>
+														<option value='europe'>Europe</option>
+														<option value='middleeast'>Middle East</option>
+														<option value='lamerica'>Latin America</option>
+														<option value='namerica'>North America</option>
+														<option value='samerica'>South America</option>
 													</select>
 												</div>
-												<div class="form-group">
-													<label for="exampleFormControlSelect2">Example
-														multiple select</label> <select multiple="" class="form-control"
-														id="exampleFormControlSelect2">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-														<option>5</option>
+												<div class="col-md-3">
+													<select name="country" class="form-control"
+														onChange="">
+														<option value=''>← Select Region</option>
 													</select>
 												</div>
-												<div class="form-group">
-													<label for="exampleFormControlFile1">Example file
-														input</label> <input type="file" class="form-control-file"
-														id="exampleFormControlFile1">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-9">
+													<label for="comment">내용</label>
 												</div>
-												<div class="form-group">
-													<label for="comment">Comment</label>
-													<textarea class="form-control" id="comment" rows="5">
+												<div class="col-md-1">
+													<label for="comment">별점</label>
+												</div>
+												<div class="col-md-2">
+													<div id="star"></div>
+												</div>
+											</div>
+											<textarea class="form-control" name="contents" id="comment" rows="10">
 												</textarea>
-												</div>
-												<div class="form-check">
-													<label class="form-check-label"> <input
-														class="form-check-input" type="checkbox" value="">
-														<span class="form-check-sign">Agree with terms and
-															conditions</span>
-													</label>
-												</div>
-											</div>
-											<div class="card-action">
-												<button class="btn btn-success">Submit</button>
-												<button class="btn btn-danger">Cancel</button>
+										</div>
+									</div>
+
+									<div class="card-action">
+										<div class="row">
+											<div class="col-md-9"></div>
+											<div class="col-md-3">
+
+												<button type="button" class="btn btn-danger"
+													style="float: right;" onclick='history.back(1)'>취소</button>
+												<input type="submit" class="btn btn-success"
+													style="float: right; margin-right: 5px" value="작성 완료">
+
 											</div>
 										</div>
 									</div>
-									
-								</div>
-
-				
-				</div>
-				<footer class="footer">
-					<div class="container-fluid">
-						<nav class="pull-left">
-							<ul class="nav">
-
-							</ul>
-						</nav>
-						<div class="copyright ml-auto">
-							2019, made in <i class="la la-heart heart text-danger"></i> Hero
+								</form>
+							</div>
 						</div>
 					</div>
-				</footer>
+
+
+				</div>
 			</div>
 		</div>
+		<footer class="footer">
+			<div class="container-fluid">
+				<nav class="pull-left">
+					<ul class="nav">
+
+					</ul>
+				</nav>
+				<div class="copyright ml-auto">
+					2019, made in <i class="la la-heart heart text-danger"></i> Hero
+				</div>
+			</div>
+
+		</footer>
+
+
 	</div>
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
 		aria-labelledby="modalUpdatePro" aria-hidden="true">
@@ -340,6 +312,10 @@
 <script src="<c:url value='resources/Ready/assets/js/ready.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/demo.js'/>"></script>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="<c:url value='resources/Ready/assets/js/plugin/jquery.raty.js'/>"></script>
+
 <script type="text/javascript">
 	var africaArray = new Array("('Select country','',true,true)",
 			"('Algeria')", "('Angola')", "('Burundi')", "('Cameroon')",
@@ -385,21 +361,29 @@
 			"('Suriname')", "('Uruguay')", "('Venezuela')", "('Other')");
 	function populateCountry(inForm, selected) {
 
-		if (selected == "all") {
-			alert("꾸꾸까까");
-		}
-
 		var selectedArray = eval(selected + "Array");
-		while (selectedArray.length < inForm.user_country.options.length) {
-			inForm.user_country.options[(inForm.user_country.options.length - 1)] = null;
+		while (selectedArray.length < inForm.country.options.length) {
+			inForm.country.options[(inForm.country.options.length - 1)] = null;
 		}
 		for (var i = 0; i < selectedArray.length; i++) {
-			eval("inForm.user_country.options[i]=" + "new Option"
+			eval("inForm.country.options[i]=" + "new Option"
 					+ selectedArray[i]);
 		}
 		if (inForm.region.options[0].value == '') {
 			inForm.region.options[0] = null;
 		}
 	}
+</script>
+<script type="text/javascript">
+	$(function() {
+		$('div#star').raty({
+			score : 0,
+			path : "resources/Ready/assets/img/star",
+			width : 200,
+			click : function(score, evt) {
+
+			}
+		});
+	});
 </script>
 </html>

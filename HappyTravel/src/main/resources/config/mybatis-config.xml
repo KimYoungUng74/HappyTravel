@@ -6,10 +6,12 @@
 <!-- [DB연결 사용법] 8. 만든 DTO와 Mapper정의하기 -->
 	<typeAliases>
 		<typeAlias type="com.spring.travel.dto.UserDTO" alias="UserDTO"></typeAlias>
+		<typeAlias type="com.spring.travel.dto.ReviewDTO" alias="ReviewDTO"></typeAlias>
 	</typeAliases>
 	
 	
 	<mappers>
 		<mapper resource="mappers/UserMapper.xml" />
+		<mapper resource="mappers/ReviewMapper.xml" />
 	</mappers>
 </configuration>

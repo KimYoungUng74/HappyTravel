@@ -37,6 +37,7 @@ public class ReviewController {
 		List<ReviewDTO> list = reviewSer.listAll();
         // ModelAndView - 모델과 뷰
         ModelAndView mav = new ModelAndView();
+
         mav.setViewName("reviewPage"); // 뷰를 list.jsp로 설정
         mav.addObject("list", list); // 데이터를 저장
         return mav; // reviewPage.jsp로 List가 전달된다.
@@ -49,10 +50,11 @@ public class ReviewController {
 	}
 	
 	// 리뷰 게시글 작성처리
-    @RequestMapping(value="insert.do", method=RequestMethod.POST)
+    @RequestMapping(value="reviewInsert.do", method=RequestMethod.POST)
     public String insert(@ModelAttribute ReviewDTO dto) throws Exception{
+    	System.out.println(dto.toString());
     	reviewSer.create(dto);
-        return "redirect:list.do";
+        return "redirect:review.do";
     }
     
     // 리뷰 게시글 상세내용 조회, 게시글 조회수 증가 처리
