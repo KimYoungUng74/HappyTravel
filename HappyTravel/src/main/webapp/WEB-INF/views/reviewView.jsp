@@ -147,107 +147,84 @@
 			<div class="content">
 				<div class="container-fluid">
 					<h4 class="page-title">여행 후기</h4>
-
-
-					<div class="col-md-12">
-						<div class="card card-tasks">
-							<div class="card-header ">
-								<div class="row">
-									<div class="col-md-6">
-										<h4 class="card-title">여행 후기 - 나라명</h4>
-										<p class="card-category">생생한 여행 후기로 자신만의 여행 계획을 짜보세요!</p>
-									</div>
-
-									<div class="col-md-6">
-										<form name="reviewform">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">글쓰기</div>
+								</div>
+								<form name="reviewform" method="post" action="reviewInsert.do">
+									<input type="hidden" name="user_id" readonly="readonly"
+										value="${sessionScope.userId}" /> <input type="hidden"
+										name="user_name" value="${sessionScope.userName}" />
+									<div class="card-body">
+										<div class="form-group">
 											<div class="row">
 												<div class="col-md-6">
-													<div class="form-group">
-														<select name="region" class="form-control"
-															onChange="populateCountry(document.reviewform,document.reviewform.region.options[document.reviewform.region.selectedIndex].value)">
-															<option selected value=''>Select Region</option>
-															<option value='all'>All</option>
-															<option value='asia'>Asia</option>
-															<option value='africa'>Africa</option>
-															<option value='australia'>Australia</option>
-															<option value='europe'>Europe</option>
-															<option value='middleeast'>Middle East</option>
-															<option value='lamerica'>Latin America</option>
-															<option value='namerica'>North America</option>
-															<option value='samerica'>South America</option>
-														</select>
-													</div>
+													<label for="email">리뷰 제목</label>
 												</div>
 												<div class="col-md-6">
-													<div class="form-group">
-														<select name="user_country" class="form-control"
-															onChange="">
-															<option value=''>← Select Region</option>
-														</select>
+													<label for="email">나라</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="card">
+														<div class="card-body">
+															<p>${dto.title}</p>
+														</div>
+													</div>
+
+												</div>
+												<div class="col-md-6">
+													<div class="col-md-6">
+														<div class="card">
+															<div class="card-body">
+																<p>${dto.country}</p>
+															</div>
+														</div>
+
 													</div>
 												</div>
 											</div>
-										</form>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-9">
+													<label for="comment">내용</label>
+												</div>
+												<div class="col-md-1">
+													<label for="comment">별점</label>
+												</div>
+												<div class="col-md-2">
+													<div id="star"></div>
+												</div>
+											</div>
+											<div class="card">
+												<div class="card-body">
+													<p>${dto.contents}</p>
+												</div>
+											</div>
+										</div>
 									</div>
 
-
-								</div>
-							</div>
-							<div class="card-body">
-								<table class="table table-striped  table-striped table-hover">
-									<thead>
-										<tr>
-											<th>글번호</th>
-											<th>글제목</th>
-											<th>나라</th>
-											<th>글쓴이</th>
-											<th>글쓴 날짜</th>
-											<th>조회수</th>
-											<th>별점</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="row" items="${list}">
-											<tr>
-												<td>${row.review_num}</td>
-												<td><a href="reviewView.do?review_num=${row.review_num}">${row.title}</a></td>
-												<td>${row.country}</td>
-												<td>${row.user_name}</td>
-												<td>${row.reg_date}</td>
-												<td>${row.hits}</td>
-												<td><div>
-														<c:forEach var="i" begin="1" end="5">
-															<c:if test="${i le row.rating  }">
-																<img src="resources/Ready/assets/img/star/star-on.png">&nbsp;
-															</c:if>
-															<c:if test="${i gt row.rating }">
-																<img src="resources/Ready/assets/img/star/star-off.png">&nbsp;
-															</c:if>
-														</c:forEach>
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							<div class="card-footer ">
-								<div class="col-md-12">
-									<div class="row">
-
-										<div class="col-md-10">여기에 페이징?_?</div>
-
-										<div class="col-md-2">
-											<c:if test="${sessionScope.userId != null}">
-												<button class="btn btn btn-default" style="float: right;"
-													onclick="location.href='reviewWrite.do'">글쓰기</button>
+									<div class="card-action">
+										<div class="row">
+											<div class="col-md-9"></div>
+											<c:if test="${sessionScope.userId eq dto.user_id}">
+												<div class="col-md-3">
+													<input type="submit" class="btn btn-success"
+														style="float: right; margin-right: 5px" value="수정 하기">
+												</div>
 											</c:if>
 										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
 		</div>
@@ -262,8 +239,12 @@
 					2019, made in <i class="la la-heart heart text-danger"></i> Hero
 				</div>
 			</div>
+
 		</footer>
+
+
 	</div>
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
 		aria-labelledby="modalUpdatePro" aria-hidden="true">
@@ -373,19 +354,14 @@
 			"('Argentina')", "('Bolivia')", "('Brazil')", "('Chile')",
 			"('Colombia')", "('Ecuador')", "('Paraguay')", "('Peru')",
 			"('Suriname')", "('Uruguay')", "('Venezuela')", "('Other')");
-
 	function populateCountry(inForm, selected) {
 
-		if (selected == "all") {
-			alert("꾸꾸까까");
-		}
-
 		var selectedArray = eval(selected + "Array");
-		while (selectedArray.length < inForm.user_country.options.length) {
-			inForm.user_country.options[(inForm.user_country.options.length - 1)] = null;
+		while (selectedArray.length < inForm.country.options.length) {
+			inForm.country.options[(inForm.country.options.length - 1)] = null;
 		}
 		for (var i = 0; i < selectedArray.length; i++) {
-			eval("inForm.user_country.options[i]=" + "new Option"
+			eval("inForm.country.options[i]=" + "new Option"
 					+ selectedArray[i]);
 		}
 		if (inForm.region.options[0].value == '') {
@@ -393,5 +369,17 @@
 		}
 	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$('div#star').raty({
+			readOnly : true,
+			score : ${dto.rating},
+			path : "resources/Ready/assets/img/star",
+			width : 200,
+			click : function(score, evt) {
 
+			}
+		});
+	});
+</script>
 </html>

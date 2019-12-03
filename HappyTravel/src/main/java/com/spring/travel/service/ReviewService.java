@@ -28,8 +28,9 @@ public class ReviewService implements IReviewService{
         title = title.replace("<", "&gt;");
         // *공백문자 처리
         title = title.replace("  ",    "&nbsp;&nbsp;");
-        // *줄바꿈 문자처리
-        content = content.replace("\n", "<br>");
+		/*
+		 * // *줄바꿈 문자처리 content = content.replace("\n", "<br>");
+		 */
         dto.setTitle(title);
         dto.setContents(content);
         reviewDao.create(dto);

@@ -58,16 +58,16 @@ public class ReviewController {
     }
     
     // 리뷰 게시글 상세내용 조회, 게시글 조회수 증가 처리
-    @RequestMapping(value="view.do", method=RequestMethod.GET)
-    public ModelAndView view(@RequestParam int board_num, HttpSession session) throws Exception{
+    @RequestMapping(value="reviewView.do", method=RequestMethod.GET)
+    public ModelAndView view(@RequestParam int review_num, HttpSession session) throws Exception{
         // 조회수 증가 처리
-    	reviewSer.increaseViewcnt(board_num, session);
+    	reviewSer.increaseViewcnt(review_num, session);
         // 모델(데이터)+뷰(화면)를 함께 전달하는 객체
         ModelAndView mav = new ModelAndView();
         // 뷰의 이름
-        mav.setViewName("board/view");
+        mav.setViewName("reviewView");
         // 뷰에 전달할 데이터
-        mav.addObject("dto", reviewSer.read(board_num));
+        mav.addObject("dto", reviewSer.read(review_num));
         return mav;
     }
 	
