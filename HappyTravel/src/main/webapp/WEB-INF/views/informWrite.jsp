@@ -170,7 +170,7 @@
 											<div class="row">
 												<div class="col-md-6">
 													<input type="text" class="form-control" id="title"
-														name="title" placeholder="리뷰 제목">
+														name="title" placeholder="제목">
 												</div>
 												<div class="col-md-3">
 													<select name="region" class="form-control"
