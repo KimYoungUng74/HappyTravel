@@ -135,10 +135,10 @@
 				</c:choose>
 				<ul class="nav">
 					<li class="nav-item"><a href="index.html">
-							<p>여행정보</p> <span class="badge badge-count">5</span>
+							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item active"><a href="review.do">
-							<p>여행후기</p> <span class="badge badge-count">5</span>
+					<li class="nav-item active"><a href="review.do?country=all&page=1">
+							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
 			</div>
@@ -151,75 +151,87 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">글쓰기</div>
+									<div class="card-title">리뷰 보기 <button type="button" class="btn"
+													style="float: right;" onclick='history.back(1)'>뒤로 가기</button></div>
+									
 								</div>
-								<form name="reviewform" method="post" action="reviewInsert.do">
-									<input type="hidden" name="user_id" readonly="readonly"
-										value="${sessionScope.userId}" /> <input type="hidden"
-										name="user_name" value="${sessionScope.userName}" />
-									<div class="card-body">
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-6">
-													<label for="email">리뷰 제목</label>
-												</div>
-												<div class="col-md-6">
-													<label for="email">나라</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="card">
-														<div class="card-body">
-															<p>${dto.title}</p>
-														</div>
-													</div>
-
-												</div>
-												<div class="col-md-6">
-													<div class="col-md-6">
-														<div class="card">
-															<div class="card-body">
-																<p>${dto.country}</p>
-															</div>
-														</div>
-
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-md-9">
-													<label for="comment">내용</label>
-												</div>
-												<div class="col-md-1">
-													<label for="comment">별점</label>
-												</div>
-												<div class="col-md-2">
-													<div id="star"></div>
-												</div>
-											</div>
-											<div class="card">
-												<div class="card-body">
-													<p>${dto.contents}</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="card-action">
+								<div class="card-body">
+									<div class="form-group">
 										<div class="row">
-											<div class="col-md-9"></div>
-											<c:if test="${sessionScope.userId eq dto.user_id}">
-												<div class="col-md-3">
-													<input type="submit" class="btn btn-success"
-														style="float: right; margin-right: 5px" value="수정 하기">
+											<div class="col-md-6">
+												<label for="email">리뷰 제목</label>
+											</div>
+											<div class="col-md-3">
+												<label for="email">나라</label>
+											</div>
+											<div class="col-md-3">
+												<label for="email">작성자</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="card">
+													<div class="card-body">
+														<p>${dto.title}</p>
+													</div>
 												</div>
-											</c:if>
+
+											</div>
+											<div class="col-md-3">
+												<div class="card">
+													<div class="card-body">
+														<p>${dto.country}</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="card">
+													<div class="card-body">
+														<p>${dto.user_name}</p>
+													</div>
+												</div>
+
+											</div>
+
 										</div>
 									</div>
-								</form>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-9">
+												<label for="comment">내용</label>
+											</div>
+											<div class="col-md-1">
+												<label for="comment">별점</label>
+											</div>
+											<div class="col-md-2">
+												<div id="star"></div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-body">
+												<p>${dto.contents}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-action">
+									<div class="row">
+										<div class="col-md-9"></div>
+										<c:if test="${sessionScope.userId eq dto.user_id}">
+											<div class="col-md-3">
+												<button onClick="deleteAction()" class="btn btn-danger"
+													style="float: right; margin-right: 5px">삭제 하기</button>
+												<button
+													onClick="location.href='reviewUpdatePage.do?review_num=${dto.review_num}'"
+													class="btn btn-success"
+													style="float: right; margin-right: 5px">수정 하기</button>
+
+												
+											</div>
+										</c:if>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -283,7 +295,18 @@
 	session.getAttribute("user_id");
 </script>
 
+<script type="text/javascript">
+	function deleteAction() {
+		if(confirm("삭제하시겠습니까?")){
 
+			location.href='reviewDelete.do?review_num=${dto.review_num}';
+        }else {
+        	alert("삭제를 취소 하셨습니다.");
+        }
+		
+		
+	}
+</script>
 <script
 	src="<c:url value='resources/Ready/assets/js/core/jquery.3.2.1.min.js'/>"></script>
 <script
@@ -311,64 +334,6 @@
 <script
 	src="<c:url value='resources/Ready/assets/js/plugin/jquery.raty.js'/>"></script>
 
-<script type="text/javascript">
-	var africaArray = new Array("('Select country','',true,true)",
-			"('Algeria')", "('Angola')", "('Burundi')", "('Cameroon')",
-			"('Congo')", "('Eritrea')", "('Ethiopia')", "('Gambia')",
-			"('Ghana')", "('Guinea')", "('Kenya')", "('Libya')",
-			"('Madagascar')", "('Morocco')", "('Mozambique')", "('Namibia')",
-			"('Nigeria')", "('Rwanda')", "('Senegal')", "('Sierra Leone')",
-			"('Somalia')", "('South Africa')", "('Sudan')", "('Tanzania')",
-			"('Tunisia')", "('Uganda')", "('Zaire')", "('Zambia')",
-			"('Zimbabwe')", "('Other')");
-	var middleeastArray = new Array("('Select country','',true,true)",
-			"('Egypt')", "('Iran')", "('Iraq')", "('Israel')", "('Jordan')",
-			"('Kuwait')", "('Lebanon')", "('Oman')", "('Saudi Arabia')",
-			"('Syria')", "('Turkey')", "('U. A. Emirates')", "('Other')");
-	var asiaArray = new Array("('Select country','',true,true)", "('Armenia')",
-			"('Bangladesh')", "('Cambodia')", "('China')", "('India')",
-			"('Indonesia')", "('Japan')", "('Malaysia')", "('Myanmar')",
-			"('Nepal')", "('Pakistan')", "('Philippines')", "('Singapore')",
-			"('South Korea')", "('Sri Lanka')", "('Taiwan')", "('Thailand')",
-			"('Uzbekistan')", "('Vietnam')", "('Other')");
-	var europeArray = new Array("('Select country','',true,true)",
-			"('Albania')", "('Austria')", "('Belarus')", "('Belgium')",
-			"('Bosnia')", "('Bulgaria')", "('Croatia')", "('Cyprus')",
-			"('Czech Rep.')", "('Denmark')", "('Estonia')", "('Finland')",
-			"('France')", "('Germany')", "('Greece')", "('Hungary')",
-			"('Iceland')", "('Ireland')", "('Italy')", "('Latvia')",
-			"('Liechtenstein')", "('Lithuania')", "('Luxembourg')",
-			"('Macedonia')", "('Malta')", "('Monaco')", "('Netherlands')",
-			"('Norway')", "('Poland')", "('Portugal')", "('Romania')",
-			"('Russia')", "('Slovakia')", "('Slovenia')", "('Spain')",
-			"('Sweden')", "('Switzerland')", "('Ukraine')",
-			"('United Kingdom')", "('Other')");
-	var australiaArray = new Array("('Select country','',true,true)",
-			"('Australia')", "('New Zealand')", "('Other')");
-	var lamericaArray = new Array("('Select country','',true,true)",
-			"('Costa Rica')", "('Cuba')", "('El Salvador')", "('Guatemala')",
-			"('Haiti')", "('Jamaica')", "('Mexico')", "('Panama')", "('Other')");
-	var namericaArray = new Array("('Select country','',true,true)",
-			"('Canada')", "('USA')", "('Other')");
-	var samericaArray = new Array("('Select country','',true,true)",
-			"('Argentina')", "('Bolivia')", "('Brazil')", "('Chile')",
-			"('Colombia')", "('Ecuador')", "('Paraguay')", "('Peru')",
-			"('Suriname')", "('Uruguay')", "('Venezuela')", "('Other')");
-	function populateCountry(inForm, selected) {
-
-		var selectedArray = eval(selected + "Array");
-		while (selectedArray.length < inForm.country.options.length) {
-			inForm.country.options[(inForm.country.options.length - 1)] = null;
-		}
-		for (var i = 0; i < selectedArray.length; i++) {
-			eval("inForm.country.options[i]=" + "new Option"
-					+ selectedArray[i]);
-		}
-		if (inForm.region.options[0].value == '') {
-			inForm.region.options[0] = null;
-		}
-	}
-</script>
 <script type="text/javascript">
 	$(function() {
 		$('div#star').raty({

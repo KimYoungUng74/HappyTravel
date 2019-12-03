@@ -55,8 +55,14 @@ public class ReviewService implements IReviewService{
     public List<ReviewDTO> listAll() throws Exception {
         return reviewDao.listAll();
     }
+    // 06. 선택 게시글 전체 목록
+    @Override
+	public List<ReviewDTO> listPick(String country) throws Exception {
+		// TODO Auto-generated method stub
+		return reviewDao.listPick(country);
+	}
     
-    // 06. 게시글 조회수 증가
+    // 07. 게시글 조회수 증가
     @Override
     public void increaseViewcnt(int review_num, HttpSession session) throws Exception {
         long update_time = 0;
@@ -77,5 +83,6 @@ public class ReviewService implements IReviewService{
             
         }
     }
+	
 
 }

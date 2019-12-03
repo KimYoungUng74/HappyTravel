@@ -3,6 +3,7 @@ package com.spring.travel.dto;
 import java.sql.Date;
 
 public class ReviewDTO {
+	
 	private int review_num;		// 게시물 번호
 	private String user_id;		// 작성자 아이디
 	private String user_name;	// 작성자 이름

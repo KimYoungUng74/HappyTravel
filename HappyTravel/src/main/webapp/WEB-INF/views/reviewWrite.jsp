@@ -135,10 +135,10 @@
 				</c:choose>
 				<ul class="nav">
 					<li class="nav-item"><a href="index.html">
-							<p>여행정보</p> <span class="badge badge-count">5</span>
+							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item active"><a href="review.do">
-							<p>여행후기</p> <span class="badge badge-count">5</span>
+					<li class="nav-item active"><a href="review.do?country=all&page=1">
+							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
 			</div>
@@ -206,8 +206,7 @@
 													<div id="star"></div>
 												</div>
 											</div>
-											<textarea class="form-control" name="contents" id="comment" rows="10">
-												</textarea>
+											<textarea class="form-control" name="contents" id="comment" rows="10"></textarea>
 										</div>
 									</div>
 

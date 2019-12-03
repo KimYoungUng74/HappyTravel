@@ -26,7 +26,7 @@ public class ReviewDao implements IReviewDao {
     // 리뷰 게시글 수정
     @Override
     public void update(ReviewDTO dto) throws Exception {
-    	mybatis.update("ReviewMapper.updateArticle", dto);
+    	mybatis.update("ReviewMapper.updateReview", dto);
  
     }
     // 리뷰 게시글 삭제
@@ -40,10 +40,17 @@ public class ReviewDao implements IReviewDao {
     public List<ReviewDTO> listAll() throws Exception {
         return mybatis.selectList("ReviewMapper.listAll");
     }
+    // 선택 나라리뷰 게시글 목록
+    @Override
+	public List<ReviewDTO> listPick(String country) throws Exception {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("ReviewMapper.listPick",country);
+	}
     // 리뷰 게시글 조회수 증가
     @Override
     public void increaseViewcnt(int board_num) throws Exception {
     	mybatis.update("ReviewMapper.increaseViewcnt", board_num);
     }
+	
 
 }

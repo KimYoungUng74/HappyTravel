@@ -15,6 +15,8 @@ public interface IReviewDao {
     public void delete(int board_num) throws Exception;
     // 리뷰 게시글 전체 목록
     public List<ReviewDTO> listAll() throws Exception;
+    // 선택 리뷰 게시글 보기
+    public List<ReviewDTO> listPick(String country) throws Exception;
     // 리뷰 게시글 조회 증가
     public void increaseViewcnt(int board_num) throws Exception;
 }
