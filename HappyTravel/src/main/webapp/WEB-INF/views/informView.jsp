@@ -20,9 +20,11 @@
 	href="<c:url value='resources/Ready/assets/css/demo.css'/>">
 </head>
 <body>
- <c:if test="${msg == 'logout'}">
- 	 <script> alert("로그아웃 되었습니다.");</script> 
- </c:if>
+	<c:if test="${msg == 'logout'}">
+		<script>
+			alert("로그아웃 되었습니다.");
+		</script>
+	</c:if>
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
@@ -78,7 +80,8 @@
 											</div>
 										</li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="passworldCheck.do"><i class="ti-user"></i>내정보</a>
+										<a class="dropdown-item" href="passworldCheck.do"><i
+											class="ti-user"></i>내정보</a>
 										<a class="dropdown-item" href="#"></i>내 게시물</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="logout.do"><i
@@ -116,9 +119,11 @@
 								<div class="collapse in" id="collapseExample"
 									aria-expanded="true" style="">
 									<ul class="nav">
-										<li><a href="passworldCheck.do"> <span class="link-collapse">내정보</span>
+										<li><a href="passworldCheck.do"> <span
+												class="link-collapse">내정보</span>
 										</a></li>
-										<li><a href="#edit"> <span class="link-collapse">내 게시물</span>
+										<li><a href="#edit"> <span class="link-collapse">내
+													게시물</span>
 										</a></li>
 										<li><a href="logout.do"> <span class="link-collapse">로그아웃</span>
 										</a></li>
@@ -129,10 +134,10 @@
 					</c:otherwise>
 				</c:choose>
 				<ul class="nav">
-					<li class="nav-item"><a href="inform.do?country=all&page=1">
+					<li class="nav-item active"><a href="inform.do?country=all&page=1">
 							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item"><a href="review.do?country=all&page=1">
+					<li class="nav-item "><a href="review.do?country=all&page=1">
 							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
@@ -141,99 +146,90 @@
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
-					<h4 class="page-title">여행 정보 한눈에 보기</h4>
+					<h4 class="page-title">여행 정보</h4>
 					<div class="row">
-						<div class="col-md-3">
-							<div class="card card-stats card-warning">
-								<div class="card-body ">
-									<div class="row">
-										<div class="col-5">
-											<div class="icon-big text-center">
-												<i class="la la-users"></i>
-											</div>
-										</div>
-										<div class="col-7 d-flex align-items-center">
-											<div class="numbers">
-												<p class="card-category">여행자</p>
-												<h4 class="card-title">1,294</h4>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card card-stats card-success">
-								<div class="card-body ">
-									<div class="row">
-										<div class="col-5">
-											<div class="icon-big text-center">
-												<i class="la la-bar-chart"></i>
-											</div>
-										</div>
-										<div class="col-7 d-flex align-items-center">
-											<div class="numbers">
-												<p class="card-category">인기여행지</p>
-												<h4 class="card-title">이시국</h4>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card card-stats card-danger">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-5">
-											<div class="icon-big text-center">
-												<i class="la la-newspaper-o"></i>
-											</div>
-										</div>
-										<div class="col-7 d-flex align-items-center">
-											<div class="numbers">
-												<p class="card-category">여행 후기</p>
-												<h4 class="card-title">1303</h4>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="card card-stats card-primary">
-								<div class="card-body ">
-									<div class="row">
-										<div class="col-5">
-											<div class="icon-big text-center">
-												<i class="la la-check-circle"></i>
-											</div>
-										</div>
-										<div class="col-7 d-flex align-items-center">
-											<div class="numbers">
-												<p class="card-category">추천여행지</p>
-												<h4 class="card-title">북한</h4>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-			
-					</div>
-					<div class="row">
-
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">세계지도</h4>
-									<p class="card-category">원하는 여행지를 클릭해보세요!</p>
+									<div class="card-title">정보 보기 <button type="button" class="btn"
+													style="float: right;" onclick='history.back(1)'>뒤로 가기</button></div>
+									
 								</div>
 								<div class="card-body">
-									<div class="mapcontainer">
-										<div class="map">
-											<span>Alternative content for the map</span>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-6">
+												<label for="email">제목</label>
+											</div>
+											<div class="col-md-3">
+												<label for="email">나라</label>
+											</div>
+											<div class="col-md-3">
+												<label for="email">작성자</label>
+											</div>
 										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="card">
+													<div class="card-body">
+														<p>${dto.title}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="col-md-3">
+												<div class="card">
+													<div class="card-body">
+														<p>${dto.country}</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="card">
+													<div class="card-body">
+														<p>${dto.user_name}</p>
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-md-9">
+												<label for="comment">내용</label>
+											</div>
+											<div class="col-md-1">
+												<label for="comment">별점</label>
+											</div>
+											<div class="col-md-2">
+												<div id="star"></div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-body">
+												<p>${dto.contents}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-action">
+									<div class="row">
+										<div class="col-md-9"></div>
+										<c:if test="${sessionScope.userId eq dto.user_id}">
+											<div class="col-md-3">
+												<button onClick="deleteAction()" class="btn btn-danger"
+													style="float: right; margin-right: 5px">삭제 하기</button>
+												<button
+													onClick="location.href='informUpdatePage.do?inform_num=${dto.inform_num}'"
+													class="btn btn-success"
+													style="float: right; margin-right: 5px">수정 하기</button>
+
+												
+											</div>
+										</c:if>
 									</div>
 								</div>
 							</div>
@@ -241,115 +237,26 @@
 					</div>
 
 
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header ">
-									<h4 class="card-title">여행 정보</h4>
-									<p class="card-category">가고싶은 나라의 여행 정보를 찾아보세요!</p>
-								</div>
-								<div class="card-body">
-									<table class="table table-striped  table-striped table-hover">
-										<thead>
-											<tr>
-												<th scope="col">글번호</th>
-												<th scope="col">글제목</th>
-												<th scope="col">나라</th>
-												<th scope="col">별점</th>
-												<th scope="col">조회수</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>나만의 니뽄 여행기</td>
-												<td>Japan</td>
-												<td>4</td>
-												<td>507</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>240만원으로 유럽여행</td>
-												<td>France</td>
-												<td>5</td>
-												<td>1552</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>남정네 둘이서 중구 뿌수기</td>
-												<td>China</td>
-												<td>4</td>
-												<td>826</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="card-footer ">여기에 페이징?_?</div>
-							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="card card-tasks">
-								<div class="card-header ">
-									<h4 class="card-title">여행 후기</h4>
-									<p class="card-category">생생한 여행 후기로 자신만의 여행 계획을 짜보세요!</p>
-								</div>
-								<div class="card-body">
-									<table class="table table-striped  table-striped table-hover">
-										<thead>
-											<tr>
-												<th scope="col">글번호</th>
-												<th scope="col">글제목</th>
-												<th scope="col">나라</th>
-												<th scope="col">별점</th>
-												<th scope="col">조회수</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>나만의 니뽄 여행기</td>
-												<td>Japan</td>
-												<td>4</td>
-												<td>507</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>240만원으로 유럽여행</td>
-												<td>France</td>
-												<td>5</td>
-												<td>1552</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>남정네 둘이서 중구 뿌수기</td>
-												<td>China</td>
-												<td>4</td>
-												<td>826</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="card-footer ">여기에 페이징?_?</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul class="nav">
-
-						</ul>
-					</nav>
-					<div class="copyright ml-auto">
-						2019, made in <i class="la la-heart heart text-danger"></i> Hero
-					</div>
-				</div>
-			</footer>
 		</div>
+		<footer class="footer">
+			<div class="container-fluid">
+				<nav class="pull-left">
+					<ul class="nav">
+
+					</ul>
+				</nav>
+				<div class="copyright ml-auto">
+					2019, made in <i class="la la-heart heart text-danger"></i> Hero
+				</div>
+			</div>
+
+		</footer>
+
+
 	</div>
-	</div>
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
 		aria-labelledby="modalUpdatePro" aria-hidden="true">
@@ -388,7 +295,18 @@
 	session.getAttribute("user_id");
 </script>
 
+<script type="text/javascript">
+	function deleteAction() {
+		if(confirm("삭제하시겠습니까?")){
 
+			location.href='informDelete.do?inform_num=${dto.inform_num}';
+        }else {
+        	alert("삭제를 취소 하셨습니다.");
+        }
+		
+		
+	}
+</script>
 <script
 	src="<c:url value='resources/Ready/assets/js/core/jquery.3.2.1.min.js'/>"></script>
 <script
@@ -399,10 +317,6 @@
 	src="<c:url value='resources/Ready/assets/js/core/bootstrap.min.js'/>"></script>
 <script
 	src="<c:url value='resources/Ready/assets/js/plugin/chartist/chartist.min.js'/>"></script>
-<script
-	src="<c:url value='resources/Ready/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js'/>"></script>
-<script
-	src="<c:url value='resources/Ready/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'/>"></script>
 <script
 	src="<c:url value='resources/Ready/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js'/>"></script>
 <script
@@ -416,20 +330,21 @@
 <script src="<c:url value='resources/Ready/assets/js/ready.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/demo.js'/>"></script>
 
-<!-- <script>
-        $(function(){
-            $(".map").on('mousewheel DOMMouseScroll', function(e) {
-            	
-                var E = e.originalEvent;
-                delta = 0;
-                console.log(E);
-                if (E.detail>0) {
-                	alert("꾸꾸");
-                }else{
-                    
-                };
-            });
-        });
-   </script>
- -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="<c:url value='resources/Ready/assets/js/plugin/jquery.raty.js'/>"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$('div#star').raty({
+			readOnly : true,
+			score : ${dto.rating},
+			path : "resources/Ready/assets/img/star",
+			width : 200,
+			click : function(score, evt) {
+
+			}
+		});
+	});
+</script>
 </html>

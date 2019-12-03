@@ -20,32 +20,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.travel.dto.PageDTO;
-import com.spring.travel.dto.ReviewDTO;
-import com.spring.travel.service.IReviewService;
-import com.spring.travel.service.ReviewService;
+import com.spring.travel.dto.InformDTO;
+import com.spring.travel.service.IInformService;
+import com.spring.travel.service.InformService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class ReviewController {
+public class InformController {
 
 	@Autowired
-	IReviewService reviewSer;
+	IInformService informSer;
 
 	// 리뷰 게시글 게시판 목록 화면
-	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
-	public ModelAndView reviewpage(@RequestParam String country, @RequestParam int page, Locale locale, Model model)
+	@RequestMapping(value = "inform.do", method = RequestMethod.GET)
+	public ModelAndView informpage(@RequestParam String country, @RequestParam int page, Locale locale, Model model)
 			throws Exception {
 
 		// 나라 선택 부분
-		List<ReviewDTO> list = null;
+		List<InformDTO> list = null;
 		if (country.equals("all")) {
-			list = reviewSer.listAll();
+			list = informSer.listAll();
 		} else {
-			list = reviewSer.listPick(country);
+			list = informSer.listPick(country);
 		}
-
 		PageDTO pageDTO = new PageDTO(list.size(), page);
 
 		int start = pageDTO.getPageBegin();
@@ -57,7 +56,7 @@ public class ReviewController {
 		 * totBlock=list.size()/PAGE_CUT+1; // 총 페이지 갯수 }
 		 * 
 		 */
-		List<ReviewDTO> nowList = new ArrayList<ReviewDTO>();
+		List<InformDTO> nowList = new ArrayList<InformDTO>();
 
 		for (int i = 0; i < PageDTO.PAGE_CUT; i++) {
 			try {
@@ -65,27 +64,27 @@ public class ReviewController {
 			} catch (IndexOutOfBoundsException e) {
 			}
 		}
-
+		System.out.println(nowList.toString());
 		// ModelAndView - 모델과 뷰
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("country", country);
-		mav.setViewName("reviewPage"); // 뷰를 list.jsp로 설정
+		mav.setViewName("informPage"); // 뷰를 list.jsp로 설정
 		mav.addObject("list", nowList); // 데이터를 저장
 		mav.addObject("pageDTO", pageDTO);
 		mav.addObject("nowPage", page);
 		// mav.addObject("totCount", totBlock);
-		return mav; // reviewPage.jsp로 List가 전달된다.
+		return mav; // informPage.jsp로 List가 전달된다.
 	}
 
 	// 리뷰 게시글 작성 화면
-	@RequestMapping(value = "/reviewWrite.do", method = RequestMethod.GET)
-	public String reviewwrite(Locale locale, Model model) {
-		return "reviewWrite";
+	@RequestMapping(value = "/informWrite.do", method = RequestMethod.GET)
+	public String informwrite(Locale locale, Model model) {
+		return "informWrite";
 	}
 
 	// 리뷰 게시글 작성처리
-	@RequestMapping(value = "reviewInsert.do", method = RequestMethod.POST)
-	public String insert(@ModelAttribute ReviewDTO dto) throws Exception {
+	@RequestMapping(value = "informInsert.do", method = RequestMethod.POST)
+	public String insert(@ModelAttribute InformDTO dto) throws Exception {
 		System.out.println(dto.toString());
 
 		String title = dto.getTitle();
@@ -107,33 +106,33 @@ public class ReviewController {
 		dto.setContents(content);
 		dto.setUser_name(writer);
 
-		reviewSer.create(dto);
-		return "redirect:review.do?country=all&page=1";
+		informSer.create(dto);
+		return "redirect:inform.do?country=all&page=1";
 	}
 
 	// 리뷰 게시글 상세내용 조회, 게시글 조회수 증가 처리
-	@RequestMapping(value = "reviewView.do", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam int review_num, HttpSession session) throws Exception {
+	@RequestMapping(value = "informView.do", method = RequestMethod.GET)
+	public ModelAndView view(@RequestParam int inform_num, HttpSession session) throws Exception {
 		// 조회수 증가 처리
-		reviewSer.increaseViewcnt(review_num, session);
+		informSer.increaseViewcnt(inform_num, session);
 		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
 		ModelAndView mav = new ModelAndView();
 		// 뷰의 이름
-		mav.setViewName("reviewView");
+		mav.setViewName("informView");
 		// 뷰에 전달할 데이터
-		mav.addObject("dto", reviewSer.read(review_num));
+		mav.addObject("dto", informSer.read(inform_num));
 		return mav;
 	}
 
 	// 리뷰 게시글 수정페이지
-	@RequestMapping(value = "reviewUpdatePage.do", method = RequestMethod.GET)
-	public ModelAndView updatePage(@RequestParam int review_num, HttpSession session) throws Exception {
+	@RequestMapping(value = "informUpdatePage.do", method = RequestMethod.GET)
+	public ModelAndView updatePage(@RequestParam int inform_num, HttpSession session) throws Exception {
 		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
 		ModelAndView mav = new ModelAndView();
 		// 뷰의 이름
-		mav.setViewName("reviewModify");
+		mav.setViewName("informModify");
 		// 뷰에 전달할 데이터
-		ReviewDTO dto = reviewSer.read(review_num);
+		InformDTO dto = informSer.read(inform_num);
 		String content = dto.getContents();
 		// DB에 들어간 <br>태그 없애주기
 		content = content.replace("<br>", "");
@@ -143,8 +142,8 @@ public class ReviewController {
 	}
 
 	// 리뷰 게시글 수정
-	@RequestMapping(value = "reviewUpdate.do", method = RequestMethod.POST)
-	public String update(@ModelAttribute ReviewDTO dto) throws Exception {
+	@RequestMapping(value = "informUpdate.do", method = RequestMethod.POST)
+	public String update(@ModelAttribute InformDTO dto) throws Exception {
 		String title = dto.getTitle();
 		String content = dto.getContents();
 		String writer = dto.getUser_name();
@@ -164,14 +163,14 @@ public class ReviewController {
 		dto.setContents(content);
 		dto.setUser_name(writer);
 
-		reviewSer.update(dto);
-		return "redirect:review.do?country=all&page=1";
+		informSer.update(dto);
+		return "redirect:inform.do?country=all&page=1";
 	}
 
 	// 리뷰 게시글 삭제
-	@RequestMapping("reviewDelete.do")
-	public String delete(@RequestParam int review_num) throws Exception {
-		reviewSer.delete(review_num);
-		return "redirect:review.do?country=all&page=1";
+	@RequestMapping("informDelete.do")
+	public String delete(@RequestParam int inform_num) throws Exception {
+		informSer.delete(inform_num);
+		return "redirect:inform.do?country=all&page=1";
 	}
 }

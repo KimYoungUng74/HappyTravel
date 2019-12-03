@@ -87,7 +87,7 @@ public class PageDTO {
 
 	public void setTotPage(int count) {
 		// 전체 페이지 계산
-		totPage = count / PAGE_CUT;
+		totPage = count / PAGE_CUT+1;
 	}
 
 	public int getTotBlock() {

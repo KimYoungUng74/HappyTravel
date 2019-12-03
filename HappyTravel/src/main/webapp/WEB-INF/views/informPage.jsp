@@ -134,10 +134,10 @@
 					</c:otherwise>
 				</c:choose>
 				<ul class="nav">
-					<li class="nav-item"><a href="inform.do?country=all&page=1">
+					<li class="nav-item active"><a href="inform.do?country=all&page=1">
 							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item active" ><a href="review.do?country=all&page=1">
+					<li class="nav-item" ><a href="review.do?country=all&page=1">
 							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
@@ -146,7 +146,7 @@
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
-					<h4 class="page-title">여행 후기</h4>
+					<h4 class="page-title">여행 정보</h4>
 
 
 					<div class="col-md-12">
@@ -154,17 +154,17 @@
 							<div class="card-header ">
 								<div class="row">
 									<div class="col-md-6">
-										<h4 class="card-title">여행 후기 - ${country}</h4>
-										<p class="card-category">생생한 여행 후기로 자신만의 여행 계획을 짜보세요!</p>
+										<h4 class="card-title">여행 정보 - ${country}</h4>
+										<p class="card-category">다양한 나라의 정보를 확인해 보세요!</p>
 									</div>
 
 									<div class="col-md-6">
-										<form name="reviewform">
+										<form name="informform">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
 														<select name="region" class="form-control"
-															onChange="populateCountry(document.reviewform,document.reviewform.region.options[document.reviewform.region.selectedIndex].value)">
+															onChange="populateCountry(document.informform,document.informform.region.options[document.informform.region.selectedIndex].value)">
 															<option selected value=''>Select Region</option>
 															<option value='all'>All</option>
 															<option value='asia'>Asia</option>
@@ -181,7 +181,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<select name="user_country" class="form-control"
-															onChange="selectCountry(document.reviewform.user_country.options[document.reviewform.user_country.selectedIndex].value)">
+															onChange="selectCountry(document.informform.user_country.options[document.informform.user_country.selectedIndex].value)">
 															<option value=''>← Select Region</option>
 														</select>
 													</div>
@@ -209,9 +209,9 @@
 									<tbody>
 										<c:forEach var="row" items="${list}">
 											<tr>
-												<td>${row.review_num}</td>
+												<td>${row.inform_num}</td>
 												<td><a
-													href="reviewView.do?review_num=${row.review_num}">${row.title}</a></td>
+													href="informView.do?inform_num=${row.inform_num}">${row.title}</a></td>
 												<td>${row.country}</td>
 												<td>${row.user_name}</td>
 												<td>${row.reg_date}</td>
@@ -239,12 +239,12 @@
 										
 											<!-- 처음 페이지로 이동 -->
 											<c:if test="${pageDTO.nowBlock > 1}">
-												<button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=1'"><<</button>
+												<button class="btn btn btn-primary" onclick="location.href='inform.do?country=${country}&page=1'"><<</button>
 											</c:if>
 											
 											<!-- 이전 블록으로 이동 -->
 											<c:if test="${pageDTO.nowBlock > 1}">
-												<button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${pageDTO.prevPage}'"><</button>
+												<button class="btn btn btn-primary" onclick="location.href='inform.do?country=${country}&page=${pageDTO.prevPage}'"><</button>
 											</c:if>
 											
 											<!-- **하나의 블럭에서 반복문 수행 시작페이지부터 끝페이지까지 -->
@@ -255,26 +255,26 @@
 							                            <button class="btn btn btn-danger" disabled="disabled">${num}</button>
 							                        </c:when>
 							                        <c:otherwise>
-							                            <button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${num}'">${num}</button>
+							                            <button class="btn btn btn-primary" onclick="location.href='inform.do?country=${country}&page=${num}'">${num}</button>
 							                        </c:otherwise>
 							                    </c:choose>
                 							</c:forEach>
 											
 											<!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [>]버튼 화면에 출력 -->
 								                <c:if test="${pageDTO.nowBlock <= pageDTO.totBlock}">
-								                    <button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${pageDTO.nextPage}'">></button>
+								                    <button class="btn btn btn-primary" onclick="location.href='inform.do?country=${country}&page=${pageDTO.nextPage}'">></button>
 								                </c:if>
 								                
-								                <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작으면 [>>] 버튼 화면에 출력 -->
+								                <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [>>] 버튼 화면에 출력 -->
 								                <c:if test="${pageDTO.nowPage < pageDTO.totPage}">
-								                    <button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${pageDTO.totPage}'">>></button>
+								                    <button class="btn btn btn-primary" onclick="location.href='inform.do?country=${country}&page=${pageDTO.totPage}'">>></button>
 								                </c:if>
 										</div>
 
 										<div class="col-md-2">
-											<c:if test="${sessionScope.userId != null}">
+											<c:if test="${sessionScope.userId eq 'root'}">
 												<button class="btn btn btn-default" style="float: right;"
-													onclick="location.href='reviewWrite.do'">글쓰기</button>
+													onclick="location.href='informWrite.do'">글쓰기</button>
 											</c:if>
 										</div>
 									</div>
@@ -411,7 +411,7 @@
 	function populateCountry(inForm, selected) {
 
 		if (selected == "all") {
-			location.href = 'review.do?country=all&page=1';
+			location.href = 'inform.do?country=all&page=1';
 		}
 
 		var selectedArray = eval(selected + "Array");
@@ -428,7 +428,7 @@
 	}
 
 	function selectCountry(selected) {
-		location.href = 'review.do?country=' + selected + '&page=1';
+		location.href = 'inform.do?country=' + selected + '&page=1';
 	}
 </script>
 

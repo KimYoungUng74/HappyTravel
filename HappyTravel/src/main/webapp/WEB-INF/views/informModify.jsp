@@ -134,10 +134,10 @@
 					</c:otherwise>
 				</c:choose>
 				<ul class="nav">
-					<li class="nav-item"><a href="inform.do?country=all&page=1">
+					<li class="nav-item active"><a href="inform.do?country=all&page=1">
 							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item active" ><a href="review.do?country=all&page=1">
+					<li class="nav-item "><a href="inform.do?country=all&page=1">
 							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
@@ -146,142 +146,90 @@
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
-					<h4 class="page-title">여행 후기</h4>
-
-
-					<div class="col-md-12">
-						<div class="card card-tasks">
-							<div class="card-header ">
-								<div class="row">
-									<div class="col-md-6">
-										<h4 class="card-title">여행 후기 - ${country}</h4>
-										<p class="card-category">생생한 여행 후기로 자신만의 여행 계획을 짜보세요!</p>
-									</div>
-
-									<div class="col-md-6">
-										<form name="reviewform">
+					<h4 class="page-title">여행 정보</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">정보 수정</div>
+								</div>
+								<form name="informform" method="post" action="informUpdate.do">
+									<input type="hidden" name="user_id"
+										value="${sessionScope.userId}" />
+										<input type="hidden" name="user_name" value="${sessionScope.userName}"/>
+										<input type="hidden" name="inform_num" value="${dto.inform_num}"/>
+									<div class="card-body">
+										<div class="form-group">
 											<div class="row">
 												<div class="col-md-6">
-													<div class="form-group">
-														<select name="region" class="form-control"
-															onChange="populateCountry(document.reviewform,document.reviewform.region.options[document.reviewform.region.selectedIndex].value)">
-															<option selected value=''>Select Region</option>
-															<option value='all'>All</option>
-															<option value='asia'>Asia</option>
-															<option value='africa'>Africa</option>
-															<option value='australia'>Australia</option>
-															<option value='europe'>Europe</option>
-															<option value='middleeast'>Middle East</option>
-															<option value='lamerica'>Latin America</option>
-															<option value='namerica'>North America</option>
-															<option value='samerica'>South America</option>
-														</select>
-													</div>
+													<label for="email">제목</label>
 												</div>
 												<div class="col-md-6">
-													<div class="form-group">
-														<select name="user_country" class="form-control"
-															onChange="selectCountry(document.reviewform.user_country.options[document.reviewform.user_country.selectedIndex].value)">
-															<option value=''>← Select Region</option>
-														</select>
-													</div>
+													<label for="email">나라 선택</label>
 												</div>
 											</div>
-										</form>
-									</div>
-
-
-								</div>
-							</div>
-							<div class="card-body">
-								<table class="table table-striped  table-striped table-hover">
-									<thead>
-										<tr>
-											<th>글번호</th>
-											<th>글제목</th>
-											<th>나라</th>
-											<th>글쓴이</th>
-											<th>글쓴 날짜</th>
-											<th>조회수</th>
-											<th>별점</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="row" items="${list}">
-											<tr>
-												<td>${row.review_num}</td>
-												<td><a
-													href="reviewView.do?review_num=${row.review_num}">${row.title}</a></td>
-												<td>${row.country}</td>
-												<td>${row.user_name}</td>
-												<td>${row.reg_date}</td>
-												<td>${row.hits}</td>
-												<td><div>
-														<c:forEach var="i" begin="1" end="5">
-															<c:if test="${i le row.rating  }">
-																<img src="resources/Ready/assets/img/star/star-on.png">&nbsp;
-															</c:if>
-															<c:if test="${i gt row.rating }">
-																<img src="resources/Ready/assets/img/star/star-off.png">&nbsp;
-															</c:if>
-														</c:forEach>
-													</div></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							<div class="card-footer ">
-								<div class="col-md-12">
-									<div class="row">
-
-										<div class="col-md-10">
-										
-											<!-- 처음 페이지로 이동 -->
-											<c:if test="${pageDTO.nowBlock > 1}">
-												<button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=1'"><<</button>
-											</c:if>
-											
-											<!-- 이전 블록으로 이동 -->
-											<c:if test="${pageDTO.nowBlock > 1}">
-												<button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${pageDTO.prevPage}'"><</button>
-											</c:if>
-											
-											<!-- **하나의 블럭에서 반복문 수행 시작페이지부터 끝페이지까지 -->
-                							<c:forEach var="num" begin="${pageDTO.blockBegin}" end="${pageDTO.blockEnd}">
-                							<!-- **현재페이지이면 하이퍼링크 제거 -->
-							                    <c:choose>
-							                        <c:when test="${num == pageDTO.nowPage}">
-							                            <button class="btn btn btn-danger" disabled="disabled">${num}</button>
-							                        </c:when>
-							                        <c:otherwise>
-							                            <button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${num}'">${num}</button>
-							                        </c:otherwise>
-							                    </c:choose>
-                							</c:forEach>
-											
-											<!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [>]버튼 화면에 출력 -->
-								                <c:if test="${pageDTO.nowBlock <= pageDTO.totBlock}">
-								                    <button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${pageDTO.nextPage}'">></button>
-								                </c:if>
-								                
-								                <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작으면 [>>] 버튼 화면에 출력 -->
-								                <c:if test="${pageDTO.nowPage < pageDTO.totPage}">
-								                    <button class="btn btn btn-primary" onclick="location.href='review.do?country=${country}&page=${pageDTO.totPage}'">>></button>
-								                </c:if>
+											<div class="row">
+												<div class="col-md-6">
+													<input type="text" class="form-control" id="title"
+														name="title" placeholder="제목" value="${dto.title}">
+												</div>
+												<div class="col-md-3">
+													<select name="region" class="form-control"
+														onChange="populateCountry(document.informform,document.informform.region.options[document.informform.region.selectedIndex].value)">
+														<option selected value=''>Select Region</option>
+														<option value='asia'>Asia</option>
+														<option value='africa'>Africa</option>
+														<option value='australia'>Australia</option>
+														<option value='europe'>Europe</option>
+														<option value='middleeast'>Middle East</option>
+														<option value='lamerica'>Latin America</option>
+														<option value='namerica'>North America</option>
+														<option value='samerica'>South America</option>
+													</select>
+												</div>
+												<div class="col-md-3">
+													<select name="country" class="form-control"
+														onChange="">
+														<option value='${dto.country}'>${dto.country}</option>
+													</select>
+												</div>
+											</div>
 										</div>
-
-										<div class="col-md-2">
-											<c:if test="${sessionScope.userId != null}">
-												<button class="btn btn btn-default" style="float: right;"
-													onclick="location.href='reviewWrite.do'">글쓰기</button>
-											</c:if>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-md-9">
+													<label for="comment">내용</label>
+												</div>
+												<div class="col-md-1">
+													<label for="comment">별점</label>
+												</div>
+												<div class="col-md-2">
+													<div id="star"></div>
+												</div>
+											</div>
+											<textarea class="form-control" name="contents" id="comment" rows="10">${dto.contents}</textarea>
 										</div>
 									</div>
-								</div>
+
+									<div class="card-action">
+										<div class="row">
+											<div class="col-md-9"></div>
+											<div class="col-md-3">
+
+												<button type="button" class="btn btn-danger"
+													style="float: right;" onclick='history.back(1)'>취소</button>
+												<input type="submit" class="btn btn-success"
+													style="float: right; margin-right: 5px" value="작성 완료">
+
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
 		</div>
@@ -296,8 +244,12 @@
 					2019, made in <i class="la la-heart heart text-danger"></i> Hero
 				</div>
 			</div>
+
 		</footer>
+
+
 	</div>
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
 		aria-labelledby="modalUpdatePro" aria-hidden="true">
@@ -407,29 +359,31 @@
 			"('Argentina')", "('Bolivia')", "('Brazil')", "('Chile')",
 			"('Colombia')", "('Ecuador')", "('Paraguay')", "('Peru')",
 			"('Suriname')", "('Uruguay')", "('Venezuela')", "('Other')");
-
 	function populateCountry(inForm, selected) {
 
-		if (selected == "all") {
-			location.href = 'review.do?country=all&page=1';
-		}
-
 		var selectedArray = eval(selected + "Array");
-		while (selectedArray.length < inForm.user_country.options.length) {
-			inForm.user_country.options[(inForm.user_country.options.length - 1)] = null;
+		while (selectedArray.length < inForm.country.options.length) {
+			inForm.country.options[(inForm.country.options.length - 1)] = null;
 		}
 		for (var i = 0; i < selectedArray.length; i++) {
-			eval("inForm.user_country.options[i]=" + "new Option"
+			eval("inForm.country.options[i]=" + "new Option"
 					+ selectedArray[i]);
 		}
 		if (inForm.region.options[0].value == '') {
 			inForm.region.options[0] = null;
 		}
 	}
-
-	function selectCountry(selected) {
-		location.href = 'review.do?country=' + selected + '&page=1';
-	}
 </script>
+<script type="text/javascript">
+	$(function() {
+		$('div#star').raty({
+			score : ${dto.rating},
+			path : "resources/Ready/assets/img/star",
+			width : 200,
+			click : function(score, evt) {
 
+			}
+		});
+	});
+</script>
 </html>
