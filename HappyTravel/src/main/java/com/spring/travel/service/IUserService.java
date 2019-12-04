@@ -22,5 +22,8 @@ public interface IUserService {
     // 회원 정보 수정
     public void modify(UserDTO dto);
     
+    // 총 회원 수 
+    public int totalPerson();
+    
 }
 

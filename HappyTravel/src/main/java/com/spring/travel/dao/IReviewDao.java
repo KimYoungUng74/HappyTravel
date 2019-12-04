@@ -19,4 +19,6 @@ public interface IReviewDao {
     public List<ReviewDTO> listPick(String country) throws Exception;
     // 리뷰 게시글 조회 증가
     public void increaseViewcnt(int board_num) throws Exception;
+ // 인기 게시물
+ 	public List<ReviewDTO> popCountry();
 }

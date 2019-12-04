@@ -64,7 +64,6 @@ public class InformController {
 			} catch (IndexOutOfBoundsException e) {
 			}
 		}
-		System.out.println(nowList.toString());
 		// ModelAndView - 모델과 뷰
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("country", country);

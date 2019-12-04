@@ -38,7 +38,7 @@
                   <input type="password" class="form-control form-control-lg" name="user_pw" placeholder="Password">
                 </div>
                 <div class="mt-3">
-                <input type="submit" class="btn btn-block btn-primary btn-lg" id="btnLogin">로그인</input>
+                <input type="submit" class="btn btn-block btn-primary btn-lg" id="btnLogin" value="로그인"></input>
                 <!-- <button  type="button"  class="btn btn-block btn-primary btn-lg" id="btnLogin">로그인</button> -->
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">

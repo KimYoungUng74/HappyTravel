@@ -27,4 +27,7 @@ public interface IReviewService {
 
 	// 리뷰 게시글 조회
 	public void increaseViewcnt(int review_num, HttpSession session) throws Exception;
+	
+	// 인기 게시물
+	public List<ReviewDTO> popCountry();
 }

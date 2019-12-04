@@ -40,6 +40,7 @@ public class ReviewController {
 
 		// 나라 선택 부분
 		List<ReviewDTO> list = null;
+		
 		if (country.equals("all")) {
 			list = reviewSer.listAll();
 		} else {

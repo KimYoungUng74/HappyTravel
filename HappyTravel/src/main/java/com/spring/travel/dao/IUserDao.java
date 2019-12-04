@@ -17,4 +17,7 @@ public interface IUserDao {
     public void logout(HttpSession session);
     // 회원 수정
     public void modify(UserDTO dto);
+    // 총 회원 수 
+    public int totalPerson();
+    
 }

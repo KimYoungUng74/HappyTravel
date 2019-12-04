@@ -51,6 +51,11 @@ public class UserDao implements IUserDao {
 		dto.setUser_pw(SHA256.getSHA256(dto.getUser_pw()));
 		mybatis.update("UserMapper.modify", dto);
 	}
+
+	@Override
+	public int totalPerson() {
+		return mybatis.selectOne("UserMapper.AllPerson");
+	}
 	
 	
 	

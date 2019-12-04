@@ -10,6 +10,10 @@
 		VALUES(#{user_id}, #{user_pw},#{user_name}, #{user_email},
 		#{user_country}, #{user_birth})
 	</insert>
+	
+	<select id="AllPerson" resultType="int">
+		SELECT COUNT(*) FROM USER;
+	</select>
 
 	<select id="loginCheck" parameterType="UserDTO"
 		resultType="String">

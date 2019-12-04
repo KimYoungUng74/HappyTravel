@@ -20,9 +20,9 @@
 	href="<c:url value='resources/Ready/assets/css/demo.css'/>">
 </head>
 <body>
- <c:if test="${msg == 'logout'}">
- 	 <script> alert("로그아웃 되었습니다.");</script> 
- </c:if>
+	<c:if test="${msg == 'logout'}">
+		<script> alert("로그아웃 되었습니다.");</script>
+	</c:if>
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
@@ -78,7 +78,8 @@
 											</div>
 										</li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="passworldCheck.do"><i class="ti-user"></i>내정보</a>
+										<a class="dropdown-item" href="passworldCheck.do"><i
+											class="ti-user"></i>내정보</a>
 										<a class="dropdown-item" href="#"></i>내 게시물</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="logout.do"><i
@@ -116,9 +117,11 @@
 								<div class="collapse in" id="collapseExample"
 									aria-expanded="true" style="">
 									<ul class="nav">
-										<li><a href="passworldCheck.do"> <span class="link-collapse">내정보</span>
+										<li><a href="passworldCheck.do"> <span
+												class="link-collapse">내정보</span>
 										</a></li>
-										<li><a href="#edit"> <span class="link-collapse">내 게시물</span>
+										<li><a href="#edit"> <span class="link-collapse">내
+													게시물</span>
 										</a></li>
 										<li><a href="logout.do"> <span class="link-collapse">로그아웃</span>
 										</a></li>
@@ -130,10 +133,12 @@
 				</c:choose>
 				<ul class="nav">
 					<li class="nav-item"><a href="inform.do?country=all&page=1">
-							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
+							<p>여행정보</p> <span class="badge"> <i
+								class="la la-newspaper-o"></i></span>
 					</a></li>
 					<li class="nav-item"><a href="review.do?country=all&page=1">
-							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
+							<p>여행후기</p> <span class="badge"> <i
+								class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
 			</div>
@@ -142,6 +147,7 @@
 			<div class="content">
 				<div class="container-fluid">
 					<h4 class="page-title">여행 정보 한눈에 보기</h4>
+
 					<div class="row">
 						<div class="col-md-3">
 							<div class="card card-stats card-warning">
@@ -154,8 +160,11 @@
 										</div>
 										<div class="col-7 d-flex align-items-center">
 											<div class="numbers">
-												<p class="card-category">여행자</p>
-												<h4 class="card-title">1,294</h4>
+												<p class="card-category">
+													가입자</p>
+												<h4 class="card-title">${totPerson}명</h4>
+						
+
 											</div>
 										</div>
 									</div>
@@ -174,7 +183,7 @@
 										<div class="col-7 d-flex align-items-center">
 											<div class="numbers">
 												<p class="card-category">인기여행지</p>
-												<h4 class="card-title">이시국</h4>
+												<h4 class="card-title">%{popCountry}</h4>
 											</div>
 										</div>
 									</div>
@@ -193,7 +202,7 @@
 										<div class="col-7 d-flex align-items-center">
 											<div class="numbers">
 												<p class="card-category">여행 후기</p>
-												<h4 class="card-title">1303</h4>
+												<h4 class="card-title">${totReview}개</h4>
 											</div>
 										</div>
 									</div>
@@ -212,14 +221,14 @@
 										<div class="col-7 d-flex align-items-center">
 											<div class="numbers">
 												<p class="card-category">추천여행지</p>
-												<h4 class="card-title">북한</h4>
+												<h4 class="card-title" id="random">여행지 찾는중...</h4>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-			
+
 					</div>
 					<div class="row">
 
@@ -416,20 +425,42 @@
 <script src="<c:url value='resources/Ready/assets/js/ready.min.js'/>"></script>
 <script src="<c:url value='resources/Ready/assets/js/demo.js'/>"></script>
 
-<!-- <script>
-        $(function(){
-            $(".map").on('mousewheel DOMMouseScroll', function(e) {
-            	
-                var E = e.originalEvent;
-                delta = 0;
-                console.log(E);
-                if (E.detail>0) {
-                	alert("꾸꾸");
-                }else{
-                    
-                };
-            });
-        });
-   </script>
- -->
+<script type="text/javascript">
+var country = new Array(
+		" Algeria ", " Angola ", " Burundi ", " Cameroon ",
+		" Congo ", " Eritrea ", " Ethiopia ", " Gambia ",
+		" Ghana ", " Guinea ", " Kenya ", " Libya ",
+		" Madagascar ", " Morocco ", " Mozambique ", " Namibia ",
+		" Nigeria ", " Rwanda ", " Senegal ", " Sierra Leone ",
+		" Somalia ", " South Africa ", " Sudan ", " Tanzania ",
+		" Tunisia ", " Uganda ", " Zaire ", " Zambia ",
+		" Zimbabwe ", " Other "," Egypt ", " Iran ", " Iraq ", " Israel ", " Jordan ",
+		" Kuwait ", " Lebanon ", " Oman ", " Saudi Arabia ",
+		" Syria ", " Turkey ", " U. A. Emirates ", " Other ", " Armenia ",
+		" Bangladesh ", " Cambodia ", " China ", " India ",
+		" Indonesia ", " Japan ", " Malaysia ", " Myanmar ",
+		" Nepal ", " Pakistan ", " Philippines ", " Singapore ",
+		" South Korea ", " Sri Lanka ", " Taiwan ", " Thailand ", " Albania ", " Austria ", " Belarus ", " Belgium ",
+		" Bosnia ", " Bulgaria ", " Croatia ", " Cyprus ",
+		" Czech Rep. ", " Denmark ", " Estonia ", " Finland ",
+		" France ", " Germany ", " Greece ", " Hungary ",
+		" Iceland ", " Ireland ", " Italy ", " Latvia ",
+		" Liechtenstein ", " Lithuania ", " Luxembourg ",
+		" Macedonia ", " Malta ", " Monaco ", " Netherlands ",
+		" Norway ", " Poland ", " Portugal ", " Romania ",
+		" Russia ", " Slovakia ", " Slovenia ", " Spain ",
+		" Sweden ", " Switzerland ", " Ukraine ",
+		" United Kingdom ", " Other ", " Australia ", " New Zealand ", " Other ", " Costa Rica ", " Cuba ", " El Salvador ", " Guatemala ",
+		" Haiti ", " Jamaica ", " Mexico ", " Panama ", " Other ", " Argentina ", " Bolivia ", " Brazil ", " Chile ",
+		" Colombia ", " Ecuador ", " Paraguay ", " Peru ",
+		" Suriname ", " Uruguay ", " Venezuela ", " Other ", " Canada ", " USA ", " Other " );
+
+function randCountry() {
+	var randCountry = country[parseInt(Math.random()*100)];
+	return randCountry;
+}
+document.getElementById('random').innerHTML=randCountry();
+
+</script>
+
 </html>

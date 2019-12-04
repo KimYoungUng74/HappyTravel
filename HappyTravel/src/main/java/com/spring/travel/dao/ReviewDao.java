@@ -51,6 +51,10 @@ public class ReviewDao implements IReviewDao {
     public void increaseViewcnt(int board_num) throws Exception {
     	mybatis.update("ReviewMapper.increaseViewcnt", board_num);
     }
+	@Override
+	public List<ReviewDTO> popCountry() {
+		return mybatis.selectOne("ReviewMapper.increaseViewcnt");
+	}
 	
 
 }

@@ -40,6 +40,10 @@
 			reg_date DESC
 	</select>
 	
+	<select id="popPick" resultType="ReviewDTO">
+		SELECT country, count(country) FROM happytravel.review group by country order by count(country) desc;
+	</select>
+	
 	<!-- 리뷰 게시글 작성 -->
 	<insert id="insert">
 		INSERT INTO review (
@@ -85,4 +89,6 @@
 		DELETE FROM review
 		WHERE review_num = #{review_num}
 	</delete>
+	
+	
 </mapper>

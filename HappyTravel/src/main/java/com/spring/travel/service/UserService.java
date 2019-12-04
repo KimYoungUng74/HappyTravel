@@ -57,5 +57,11 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		dao.modify(dto);
 	}
+
+	@Override
+	public int totalPerson() {
+		
+		return dao.totalPerson();
+	}
 	
 }
