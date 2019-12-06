@@ -83,6 +83,10 @@ public class InformService implements IInformService{
             
         }
     }
+	@Override
+	public List<InformDTO> firstView() {
+		return InformDao.firstView();
+	}
 	
 
 }

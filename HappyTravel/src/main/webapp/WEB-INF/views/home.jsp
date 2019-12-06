@@ -174,16 +174,17 @@
 						<div class="col-md-3">
 							<div class="card card-stats card-success">
 								<div class="card-body ">
-									<div class="row">
+									<div class="row"onclick="location.href='review.do?country=${popCountry}&page=1'">
 										<div class="col-5">
 											<div class="icon-big text-center">
 												<i class="la la-bar-chart"></i>
 											</div>
 										</div>
 										<div class="col-7 d-flex align-items-center">
-											<div class="numbers">
+											<div class="numbers" >
 												<p class="card-category">인기여행지</p>
-												<h4 class="card-title">%{popCountry}</h4>
+												<h4 class="card-title">${popCountry}</h4>
+												
 											</div>
 										</div>
 									</div>
@@ -261,39 +262,40 @@
 									<table class="table table-striped  table-striped table-hover">
 										<thead>
 											<tr>
-												<th scope="col">글번호</th>
-												<th scope="col">글제목</th>
-												<th scope="col">나라</th>
-												<th scope="col">별점</th>
-												<th scope="col">조회수</th>
+												<th>글번호</th>
+											<th>글제목</th>
+											<th>나라</th>
+											<th>글쓴이</th>
+											<th>글쓴 날짜</th>
+											<th>조회수</th>
+											<th>별점</th>
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach var="row" items="${informList}">
 											<tr>
-												<td>1</td>
-												<td>나만의 니뽄 여행기</td>
-												<td>Japan</td>
-												<td>4</td>
-												<td>507</td>
+												<td>${row.inform_num}</td>
+												<td><a
+													href="informView.do?inform_num=${row.inform_num}">${row.title}</a></td>
+												<td>${row.country}</td>
+												<td>${row.user_name}</td>
+												<td>${row.reg_date}</td>
+												<td>${row.hits}</td>
+												<td><div>
+														<c:forEach var="i" begin="1" end="5">
+															<c:if test="${i le row.rating  }">
+																<img src="resources/Ready/assets/img/star/star-on.png">&nbsp;
+															</c:if>
+															<c:if test="${i gt row.rating }">
+																<img src="resources/Ready/assets/img/star/star-off.png">&nbsp;
+															</c:if>
+														</c:forEach>
+													</div></td>
 											</tr>
-											<tr>
-												<td>2</td>
-												<td>240만원으로 유럽여행</td>
-												<td>France</td>
-												<td>5</td>
-												<td>1552</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>남정네 둘이서 중구 뿌수기</td>
-												<td>China</td>
-												<td>4</td>
-												<td>826</td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>
-								<div class="card-footer ">여기에 페이징?_?</div>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -306,39 +308,40 @@
 									<table class="table table-striped  table-striped table-hover">
 										<thead>
 											<tr>
-												<th scope="col">글번호</th>
-												<th scope="col">글제목</th>
-												<th scope="col">나라</th>
-												<th scope="col">별점</th>
-												<th scope="col">조회수</th>
+												<th>글번호</th>
+											<th>글제목</th>
+											<th>나라</th>
+											<th>글쓴이</th>
+											<th>글쓴 날짜</th>
+											<th>조회수</th>
+											<th>별점</th>
 											</tr>
 										</thead>
 										<tbody>
+											<c:forEach var="row" items="${reviewList}" end="5">
 											<tr>
-												<td>1</td>
-												<td>나만의 니뽄 여행기</td>
-												<td>Japan</td>
-												<td>4</td>
-												<td>507</td>
+												<td>${row.review_num}</td>
+												<td><a
+													href="reviewView.do?review_num=${row.review_num}">${row.title}</a></td>
+												<td>${row.country}</td>
+												<td>${row.user_name}</td>
+												<td>${row.reg_date}</td>
+												<td>${row.hits}</td>
+												<td><div>
+														<c:forEach var="i" begin="1" end="5">
+															<c:if test="${i le row.rating  }">
+																<img src="resources/Ready/assets/img/star/star-on.png">&nbsp;
+															</c:if>
+															<c:if test="${i gt row.rating }">
+																<img src="resources/Ready/assets/img/star/star-off.png">&nbsp;
+															</c:if>
+														</c:forEach>
+													</div></td>
 											</tr>
-											<tr>
-												<td>2</td>
-												<td>240만원으로 유럽여행</td>
-												<td>France</td>
-												<td>5</td>
-												<td>1552</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>남정네 둘이서 중구 뿌수기</td>
-												<td>China</td>
-												<td>4</td>
-												<td>826</td>
-											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>
-								<div class="card-footer ">여기에 페이징?_?</div>
 							</div>
 						</div>
 					</div>

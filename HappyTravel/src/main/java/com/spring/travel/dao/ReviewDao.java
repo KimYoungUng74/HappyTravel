@@ -53,7 +53,12 @@ public class ReviewDao implements IReviewDao {
     }
 	@Override
 	public List<ReviewDTO> popCountry() {
-		return mybatis.selectOne("ReviewMapper.increaseViewcnt");
+		return mybatis.selectList("ReviewMapper.popPick");
+	}
+	@Override
+	public List<ReviewDTO> firstView() {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("ReviewMapper.FirstView");
 	}
 	
 

@@ -21,6 +21,24 @@
 			reg_date DESC
 	</select>
 	
+	<select id="FirstView" resultType="ReviewDTO">
+		SELECT
+			review_num,
+			user_name,
+			title,
+			contents,
+			country,
+			hits,
+			rating,
+			reg_date
+		FROM
+			review
+		ORDER BY
+			review_num DESC,
+			reg_date DESC
+		LIMIT 5
+	</select>
+	
 	<select id="listPick" resultType="ReviewDTO">
 		SELECT
 			review_num,
@@ -41,7 +59,7 @@
 	</select>
 	
 	<select id="popPick" resultType="ReviewDTO">
-		SELECT country, count(country) FROM happytravel.review group by country order by count(country) desc;
+		select country from (SELECT country, count(country) as con FROM review group by country order by con desc) bt
 	</select>
 	
 	<!-- 리뷰 게시글 작성 -->

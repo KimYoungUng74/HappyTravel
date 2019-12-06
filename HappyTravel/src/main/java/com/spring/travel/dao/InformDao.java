@@ -51,6 +51,11 @@ public class InformDao implements IInformDao {
     public void increaseViewcnt(int board_num) throws Exception {
     	mybatis.update("InformMapper.increaseViewcnt", board_num);
     }
+	@Override
+	public List<InformDTO> firstView() {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("InformMapper.FirstView");
+	}
 	
 
 }

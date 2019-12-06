@@ -30,4 +30,7 @@ public interface IReviewService {
 	
 	// 인기 게시물
 	public List<ReviewDTO> popCountry();
+	
+	public List<ReviewDTO> firstView();
+	
 }

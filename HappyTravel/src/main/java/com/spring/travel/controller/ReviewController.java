@@ -52,12 +52,7 @@ public class ReviewController {
 		int start = pageDTO.getPageBegin();
 		int end = pageDTO.getPageEnd();
 
-		/*
-		 * page--; // page; if(list.size()%PAGE_CUT == 0) {
-		 * totBlock=list.size()/PAGE_CUT; // 총 페이지 갯수 } else {
-		 * totBlock=list.size()/PAGE_CUT+1; // 총 페이지 갯수 }
-		 * 
-		 */
+		
 		List<ReviewDTO> nowList = new ArrayList<ReviewDTO>();
 
 		for (int i = 0; i < PageDTO.PAGE_CUT; i++) {

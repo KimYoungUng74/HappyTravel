@@ -40,6 +40,24 @@
 			reg_date DESC
 	</select>
 	
+	<select id="FirstView" resultType="InformDTO">
+		SELECT
+			inform_num,
+			user_name,
+			title,
+			contents,
+			country,
+			hits,
+			rating,
+			reg_date
+		FROM
+			inform
+		ORDER BY
+			inform_num DESC,
+			reg_date DESC
+		LIMIT 5
+	</select>
+	
 	<!-- 리뷰 게시글 작성 -->
 	<insert id="insert">
 		INSERT INTO inform (

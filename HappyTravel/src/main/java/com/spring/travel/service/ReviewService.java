@@ -83,9 +83,15 @@ public class ReviewService implements IReviewService{
             
         }
     }
+    
 	@Override
 	public List<ReviewDTO> popCountry() {
 		return reviewDao.popCountry();
+	}
+	
+	@Override
+	public List<ReviewDTO> firstView() {
+		return reviewDao.firstView();
 	}
 	
 

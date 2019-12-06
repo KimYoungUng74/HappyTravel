@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.spring.travel.dto.InformDTO;
+import com.spring.travel.dto.ReviewDTO;
 
 public interface IInformService {
 	// 리뷰 게시글 작성
@@ -27,4 +28,6 @@ public interface IInformService {
 
 	// 리뷰 게시글 조회
 	public void increaseViewcnt(int Inform_num, HttpSession session) throws Exception;
+	
+	public List<InformDTO> firstView();
 }

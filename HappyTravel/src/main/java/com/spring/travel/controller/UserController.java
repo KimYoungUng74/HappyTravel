@@ -36,6 +36,7 @@ public class UserController {
 	IUserService userSer;
 	@Inject
 	IReviewService reviewSer;
+	String popCountry="";
 
 
 	// 회원 가입 처리
@@ -44,22 +45,9 @@ public class UserController {
 		userSer.signupUser(dto);
 		System.out.println("회원가입 되었음");
 		
-		int totPerson = userSer.totalPerson();
-		List<ReviewDTO> list = null;
-		try {
-			list = reviewSer.listAll();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int totReview = list.size();
-		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
-		mav.addObject("totReview", totReview);
-		mav.addObject("totPerson", totPerson);
-
+		mav=setHome();
 		return mav;
 	}
 
@@ -74,23 +62,11 @@ public class UserController {
 	public ModelAndView loginCheck(@ModelAttribute UserDTO dto, HttpSession sessison) {
 		boolean result = userSer.loginCheck(dto, sessison);
 		
-		int totPerson = userSer.totalPerson();
-		List<ReviewDTO> list = null;
-		try {
-			list = reviewSer.listAll();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int totReview = list.size();
-		
 		ModelAndView mav = new ModelAndView();
 		if (result) { // 로그인 성공
 			// main.jsp로 이동
+			mav=setHome();
 			mav.setViewName("home");
-			mav.addObject("totReview", totReview);
-			mav.addObject("totPerson", totPerson);
 			mav.addObject("msg", "success");
 		} else { // 로그인 실패
 			// login.jsp로 이동
@@ -104,21 +80,10 @@ public class UserController {
 	@RequestMapping(value = "logout.do")
 	public ModelAndView logOut(HttpSession session) {
 		userSer.logout(session);
-		int totPerson = userSer.totalPerson();
-		List<ReviewDTO> list = null;
-		try {
-			list = reviewSer.listAll();
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		int totReview = list.size();
-		
+
 		ModelAndView mav = new ModelAndView();
+		mav=setHome();
 		mav.setViewName("home");
-		mav.addObject("totReview", totReview);
-		mav.addObject("totPerson", totPerson);
 		mav.addObject("msg", "logout");
 		return mav;
 	}
@@ -157,27 +122,45 @@ public class UserController {
 		@RequestMapping(value = "userModifyOk.do", method = RequestMethod.POST)
 		public ModelAndView userModifyOk(Locale locale, UserDTO dto) {
 			
-			int totPerson = userSer.totalPerson();
-			List<ReviewDTO> list = null;
-			try {
-				list = reviewSer.listAll();
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			int totReview = list.size();
-			
 			
 			ModelAndView mav = new ModelAndView();
+			mav=setHome();
 			mav.setViewName("home");
-			mav.addObject("totReview", totReview);
-			mav.addObject("totPerson", totPerson);
 			userSer.modify(dto);
 			System.out.println("회원정보 수정 되었음");
 
 			return mav;
 		}
 
+
+		public ModelAndView setHome() {
+			int totPerson = userSer.totalPerson();
+			int totReview = 0;
+			List<ReviewDTO> list = null;
+			try {
+				list = reviewSer.listAll();
+				totReview= list.size();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			try {
+				list	= reviewSer.popCountry();
+				popCountry = list.get(0).getCountry();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("popCountry", popCountry);
+			mav.addObject("totReview", totReview);
+			mav.addObject("totPerson", totPerson);
+			
+			return mav;
+		}
 
 }
