@@ -46,8 +46,9 @@ public class UserController {
 		System.out.println("회원가입 되었음");
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home");
 		mav=setHome();
+		mav.setViewName("home");
+		
 		return mav;
 	}
 
