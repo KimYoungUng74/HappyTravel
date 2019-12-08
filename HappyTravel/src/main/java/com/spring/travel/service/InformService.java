@@ -7,14 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.travel.dao.InformDao;
+import com.spring.travel.dao.InformDAO;
 import com.spring.travel.dto.InformDTO;
 
 @Service("IInformService")
 public class InformService implements IInformService{
 
 	@Autowired
-	InformDao InformDao;
+	InformDAO InformDao;
     
     // 01. 게시글쓰기
     @Override

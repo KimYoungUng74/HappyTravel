@@ -1,126 +1,98 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-</head>
-<body>
-<div class="container">
-    <form id="commentForm" name="commentForm" method="post">
-    <br><br>
-        <div>
-            <div>
-                <span><strong>Comments</strong></span> <span id="cCnt"></span>
-            </div>
-            <div>
-                <table class="table">                    
-                    <tr>
-                        <td>
-                            <textarea style="width: 1100px" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요"></textarea>
-                            <br>
-                            <div>
-                                <a href='#' onClick="fn_comment('${result.code }')" class="btn pull-right btn-success">등록</a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <input type="hidden" id="b_code" name="b_code" value="${result.code }" />        
-    </form>
-</div>
-<div class="container">
-    <form id="commentListForm" name="commentListForm" method="post">
-        <div id="commentList">
-        </div>
-    </form>
-</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
  
 <script>
-/*
- * 댓글 등록하기(Ajax)
- */
-function fn_comment(code){
-    
+var bno = '${review_num}'; //게시글 번호
+
+function commentInsert() {
+	var insertData = $(".commentInsertForm").serialize(); //commentInsertForm의 내용을 가져옴
+    commentInsert(insertData); //Insert 함수호출(아래)
+}
+ 
+ 
+ 
+//댓글 목록 
+function commentList(){
     $.ajax({
-        type:'POST',
-        url : "<c:url value='/board/addComment.do'/>",
-        data:$("#commentForm").serialize(),
+        url : '/commentList',
+        type : 'get',
+        data : {'bno':bno},
         success : function(data){
-            if(data=="success")
-            {
-                getCommentList();
-                $("#comment").val("");
-            }
-        },
-        error:function(request,status,error){
-            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
-        
+            var a =''; 
+            $.each(data, function(key, value){ 
+                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
+                a += '</div></div>';
+            });
+            
+            $(".commentList").html(a);
+        }
     });
 }
  
-/**
- * 초기 페이지 로딩시 댓글 불러오기
- */
-$(function(){
+//댓글 등록
+function commentInsert(insertData){
+    $.ajax({
+        url : '/commentInsert',
+        type : 'post',
+        data : insertData,
+        success : function(data){
+            if(data == 1) {
+                commentList(); //댓글 작성 후 댓글 목록 reload
+                $('.content').val('');
+            }
+        }
+    });
+}
+ 
+//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+function commentUpdate(cno, content){
+    var a ='';
     
-    getCommentList();
+    a += '<div class="input-group">';
+    a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+    a += '</div>';
     
+    $('.commentContent'+cno).html(a);
+    
+}
+ 
+//댓글 수정
+function commentUpdateProc(cno){
+    var updateContent = $('[name=content_'+cno+']').val();
+    
+    $.ajax({
+        url : '/commentUpdate',
+        type : 'post',
+        data : {'content' : updateContent, 'cno' : cno},
+        success : function(data){
+            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+        }
+    });
+}
+ 
+//댓글 삭제 
+function commentDelete(cno){
+    $.ajax({
+        url : '/commentDelete/'+cno,
+        type : 'post',
+        success : function(data){
+            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
+        }
+    });
+}
+ 
+ 
+ 
+ 
+$(document).ready(function(){
+    commentList(); //페이지 로딩시 댓글 목록 출력 
 });
  
-/**
- * 댓글 불러오기(Ajax)
- */
-function getCommentList(){
-    
-    $.ajax({
-        type:'GET',
-        url : "<c:url value='/board/commentList.do'/>",
-        dataType : "json",
-        data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-        success : function(data){
-            
-            var html = "";
-            var cCnt = data.length;
-            
-            if(data.length > 0){
-                
-                for(i=0; i<data.length; i++){
-                    html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
-                    html += data[i].comment + "<tr><td></td></tr>";
-                    html += "</table></div>";
-                    html += "</div>";
-                }
-                
-            } else {
-                
-                html += "<div>";
-                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                html += "</table></div>";
-                html += "</div>";
-                
-            }
-            
-            $("#cCnt").html(cCnt);
-            $("#commentList").html(html);
-            
-        },
-        error:function(request,status,error){
-            
-       }
-        
-    });
-}
+ 
  
 </script>
- 
-</body>
-</html>

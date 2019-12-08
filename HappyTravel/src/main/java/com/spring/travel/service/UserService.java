@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.spring.travel.dao.IUserDao;
+import com.spring.travel.dao.IUserDAO;
 import com.spring.travel.dto.UserDTO;
 
 
@@ -15,7 +15,7 @@ public class UserService implements IUserService {
 	
 	// 인터페이스로 생성해야함
 	@Autowired
-	public IUserDao dao;
+	public IUserDAO dao;
 
 	// 회원 가입
 	@Override

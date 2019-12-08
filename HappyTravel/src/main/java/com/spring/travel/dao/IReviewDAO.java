@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.spring.travel.dto.ReviewDTO;
 
-public interface IReviewDao {
+public interface IReviewDAO {
 	// 리뷰 게시글 작성
     public void create(ReviewDTO dto) throws Exception;
     // 리뷰 게시글 상세보기

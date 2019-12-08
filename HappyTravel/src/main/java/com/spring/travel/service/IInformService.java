@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.spring.travel.dto.CommentDTO;
 import com.spring.travel.dto.InformDTO;
 import com.spring.travel.dto.ReviewDTO;
 
 public interface IInformService {
+    
 	// 리뷰 게시글 작성
 	public void create(InformDTO dto) throws Exception;
 

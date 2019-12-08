@@ -212,24 +212,21 @@
 												<p>${dto.contents}</p>
 											</div>
 										</div>
-									</div>
-								</div>
-
-								<div class="card-action">
-									<div class="row">
-										<div class="col-md-9"></div>
+										<div class="row">
+										<div class="col-md-8"></div>
 										<c:if test="${sessionScope.userId eq dto.user_id}">
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<button onClick="deleteAction()" class="btn btn-danger"
 													style="float: right; margin-right: 5px">삭제 하기</button>
 												<button
-													onClick="location.href='informUpdatePage.do?inform_num=${dto.inform_num}'"
+													onClick="location.href='reviewUpdatePage.do?review_num=${dto.review_num}'"
 													class="btn btn-success"
 													style="float: right; margin-right: 5px">수정 하기</button>
 
 												
 											</div>
 										</c:if>
+									</div>
 									</div>
 								</div>
 							</div>

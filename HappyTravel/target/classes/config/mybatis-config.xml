@@ -8,6 +8,7 @@
 		<typeAlias type="com.spring.travel.dto.UserDTO" alias="UserDTO"></typeAlias>
 		<typeAlias type="com.spring.travel.dto.ReviewDTO" alias="ReviewDTO"></typeAlias>
 		<typeAlias type="com.spring.travel.dto.InformDTO" alias="InformDTO"></typeAlias>
+		<typeAlias type="com.spring.travel.dto.CommentDTO" alias="CommentDTO"></typeAlias>
 	</typeAliases>
 	
 	
@@ -15,5 +16,6 @@
 		<mapper resource="mappers/UserMapper.xml" />
 		<mapper resource="mappers/ReviewMapper.xml" />
 		<mapper resource="mappers/InformMapper.xml" />
+		<mapper resource="mappers/CommentMapper.xml" />
 	</mappers>
 </configuration>

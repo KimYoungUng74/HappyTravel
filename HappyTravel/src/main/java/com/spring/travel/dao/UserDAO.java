@@ -13,7 +13,7 @@ import com.spring.travel.util.SHA256;
 
 //[DB연결 사용법] 3. 인터페이스 받아서 클래스 생성
 @Repository
-public class UserDao implements IUserDao {
+public class UserDAO implements IUserDAO {
 	// 컨테이너가 객체를 자동으로 생성 Autowired
 	@Autowired
 	public SqlSessionTemplate mybatis;

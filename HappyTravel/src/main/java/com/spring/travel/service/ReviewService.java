@@ -7,14 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.travel.dao.ReviewDao;
+import com.spring.travel.dao.ReviewDAO;
 import com.spring.travel.dto.ReviewDTO;
 
 @Service("IReviewService")
 public class ReviewService implements IReviewService{
 
 	@Autowired
-	ReviewDao reviewDao;
+	ReviewDAO reviewDao;
     
     // 01. 게시글쓰기
     @Override

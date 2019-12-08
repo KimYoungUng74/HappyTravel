@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.travel.dto.CommentDTO;
 import com.spring.travel.dto.PageDTO;
 import com.spring.travel.dto.ReviewDTO;
+import com.spring.travel.service.ICommentService;
 import com.spring.travel.service.IReviewService;
 import com.spring.travel.service.ReviewService;
 
@@ -33,6 +35,9 @@ public class ReviewController {
 	@Autowired
 	IReviewService reviewSer;
 
+	@Autowired
+	ICommentService commentSer;
+	
 	// 리뷰 게시글 게시판 목록 화면
 	@RequestMapping(value = "/review.do", method = RequestMethod.GET)
 	public ModelAndView reviewpage(@RequestParam String country, @RequestParam int page, Locale locale, Model model)
@@ -111,13 +116,17 @@ public class ReviewController {
 	@RequestMapping(value = "reviewView.do", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam int review_num, HttpSession session) throws Exception {
 		// 조회수 증가 처리
+		List<CommentDTO> commentList = new ArrayList<CommentDTO>();
+		commentList = commentSer.commentList(review_num);
 		reviewSer.increaseViewcnt(review_num, session);
 		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
 		ModelAndView mav = new ModelAndView();
 		// 뷰의 이름
 		mav.setViewName("reviewView");
 		// 뷰에 전달할 데이터
+		mav.addObject("commentList", commentList);
 		mav.addObject("dto", reviewSer.read(review_num));
+		mav.addObject("review_num", review_num);
 		return mav;
 	}
 
@@ -168,6 +177,7 @@ public class ReviewController {
 	@RequestMapping("reviewDelete.do")
 	public String delete(@RequestParam int review_num) throws Exception {
 		reviewSer.delete(review_num);
+		commentSer.commentDeleteAll(review_num);
 		return "redirect:review.do?country=all&page=1";
 	}
 }

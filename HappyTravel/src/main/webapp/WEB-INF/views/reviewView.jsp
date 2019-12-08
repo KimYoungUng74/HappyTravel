@@ -134,11 +134,14 @@
 					</c:otherwise>
 				</c:choose>
 				<ul class="nav">
-					<li class="nav-item"><a href="index.html">
-							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
+					<li class="nav-item"><a href="inform.do?country=all&page=1">
+							<p>여행정보</p> <span class="badge"> <i
+								class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item active"><a href="review.do?country=all&page=1">
-							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
+					<li class="nav-item active"><a
+						href="review.do?country=all&page=1">
+							<p>여행후기</p> <span class="badge"> <i
+								class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
 			</div>
@@ -151,9 +154,12 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">리뷰 보기 <button type="button" class="btn"
-													style="float: right;" onclick='history.back(1)'>뒤로 가기</button></div>
-									
+									<div class="card-title">
+										리뷰 보기
+										<button type="button" class="btn" style="float: right;"
+											onclick='history.back(1)'>뒤로 가기</button>
+									</div>
+
 								</div>
 								<div class="card-body">
 									<div class="form-group">
@@ -213,13 +219,10 @@
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<div class="card-action">
 									<div class="row">
-										<div class="col-md-9"></div>
+										<div class="col-md-8"></div>
 										<c:if test="${sessionScope.userId eq dto.user_id}">
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<button onClick="deleteAction()" class="btn btn-danger"
 													style="float: right; margin-right: 5px">삭제 하기</button>
 												<button
@@ -227,16 +230,88 @@
 													class="btn btn-success"
 													style="float: right; margin-right: 5px">수정 하기</button>
 
-												
+
 											</div>
 										</c:if>
 									</div>
 								</div>
+
+								<div class="card-action">
+									<form id="commentInsertForm">
+										<label for="comment">댓글</label>
+
+										<c:choose>
+											<c:when test="${sessionScope.userId == null}">
+
+												<div class="card">
+													<input type="text" class="form-control" id="content"
+														name="content" disabled="disabled"
+														value="로그인 후 댓글 작성이 가능합니다.">
+												</div>
+
+											</c:when>
+											<c:otherwise>
+												<div class="row">
+													<div class="col-md-11">
+														<div class="card">
+															<input type="hidden" id="bno" value="${review_num}" /> <input
+																type="text" class="form-control" id="content"
+																name="content" placeholder="댓글을 입력하세요.">
+														</div>
+													</div>
+													<div class="col-md-1">
+														<button class="btn btn-primary" type="button"
+															onClick="commentGo();" class="btn">댓글 달기</button>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
+
+									</form>
+								</div>
+								<div class="card-action">
+									<c:forEach var="row" items="${commentList}">
+										<input type="hidden" name="cno" value=${row.cno}>
+										<div class="row">
+											<div class="col-md-2">
+												<label for="comment">작성자 : ${row.writer}</label>
+											</div>
+											<div class="col-md-10">
+												<label> 작성일 : ${row.reg_date}</label>
+											</div>
+										</div>
+
+										<div class="row">
+											<c:choose>
+												<c:when test="${sessionScope.userId eq row.writer}">
+													<div class="col-md-10">
+														<div class="card">
+															<p>${row.content}</p>
+														</div>
+													</div>
+													<div class="col-md-2">
+														<button class="btn btn-warning" type="button"
+															onClick="commentGo();" class="btn">댓글수정</button>
+														<button class="btn  btn-danger" type="button"
+															onClick="commentDelete(${row.cno});" class="btn">댓글삭제</button>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="col-md-12">
+														<div class="card">
+															<p>${row.content}</p>
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+
+										</div>
+
+									</c:forEach>
+								</div>
 							</div>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
@@ -307,6 +382,19 @@
 		
 	}
 </script>
+<script>
+	function commentGo() {
+		var comment = $('#content').val();
+		location.href='commentInsert.do?review_num='+${dto.review_num}+'&content='+encodeURI(comment)+'&writer='+encodeURI('${sessionScope.userId}');
+	}
+	function commentDelete(cno) {
+		if(confirm("해당 댓글을 삭제하시겠습니까?")){
+			location.href='commentDelete.do?review_num=${dto.review_num}&cno='+cno;
+        }else {
+        	alert("삭제를 취소 하셨습니다.");
+        }
+	}
+</script>
 <script
 	src="<c:url value='resources/Ready/assets/js/core/jquery.3.2.1.min.js'/>"></script>
 <script
@@ -347,4 +435,104 @@
 		});
 	});
 </script>
+
+<!-- <script>
+var bno = '${review_num}'; //게시글 번호
+
+function commentBtn() {
+	
+	var insertData = $("#commentInsertForm").serialize(); //commentInsertForm의 내용을 가져옴
+	
+    commentInsert(insertData); //Insert 함수호출(아래)
+}
+ 
+ 
+ 
+//댓글 목록 
+function commentList(){
+    $.ajax({
+        url : '/commentList',
+        type : 'get',
+        data : {'bno':bno},
+        success : function(data){
+            var a =''; 
+            $.each(data, function(key, value){ 
+                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
+                a += '</div></div>';
+            });
+            
+            $("#commentList").html(a);
+        }
+    });
+}
+ 
+//댓글 등록
+function commentInsert(insertData){
+    $.ajax({
+        url : 'commentInsert',
+        type : 'post',
+        data : insertData,
+        success : function(data){
+            if(data == 1) {
+                commentList(); //댓글 작성 후 댓글 목록 reload
+                $('#content').val('');
+            }
+        }
+    });
+}
+ 
+//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+function commentUpdate(cno, content){
+    var a ='';
+    
+    a += '<div class="input-group">';
+    a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+    a += '</div>';
+    
+    $('#commentContent'+cno).html(a);
+    
+}
+ 
+//댓글 수정
+function commentUpdateProc(cno){
+    var updateContent = $('[name=content_'+cno+']').val();
+    
+    $.ajax({
+        url : '/commentUpdate',
+        type : 'post',
+        data : {'content' : updateContent, 'cno' : cno},
+        success : function(data){
+            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+        }
+    });
+}
+ 
+//댓글 삭제 
+function commentDelete(cno){
+    $.ajax({
+        url : '/commentDelete/'+cno,
+        type : 'post',
+        success : function(data){
+            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
+        }
+    });
+}
+ 
+ 
+ 
+ 
+$(document).ready(function(){
+    commentList(); //페이지 로딩시 댓글 목록 출력 
+}); -->
+
+
+
+</script>
+
+
 </html>

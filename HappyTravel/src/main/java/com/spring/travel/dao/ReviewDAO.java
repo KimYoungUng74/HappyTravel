@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.travel.dto.ReviewDTO;
 
 @Repository
-public class ReviewDao implements IReviewDao {
+public class ReviewDAO implements IReviewDAO {
 
 	@Autowired
 	public SqlSessionTemplate mybatis;

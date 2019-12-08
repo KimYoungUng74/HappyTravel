@@ -5,7 +5,7 @@ import java.util.List;
 import com.spring.travel.dto.InformDTO;
 import com.spring.travel.dto.ReviewDTO;
 
-public interface IInformDao {
+public interface IInformDAO {
 	// 리뷰 게시글 작성
     public void create(InformDTO dto) throws Exception;
     // 리뷰 게시글 상세보기

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.travel.dto.InformDTO;
 
 @Repository
-public class InformDao implements IInformDao {
+public class InformDAO implements IInformDAO {
 
 	@Autowired
 	public SqlSessionTemplate mybatis;

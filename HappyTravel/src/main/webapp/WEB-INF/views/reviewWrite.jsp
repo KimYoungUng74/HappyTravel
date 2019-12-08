@@ -134,7 +134,7 @@
 					</c:otherwise>
 				</c:choose>
 				<ul class="nav">
-					<li class="nav-item"><a href="index.html">
+					<li class="nav-item"><a href="inform.do?country=all&page=1">
 							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
 					</a></li>
 					<li class="nav-item active"><a href="review.do?country=all&page=1">
