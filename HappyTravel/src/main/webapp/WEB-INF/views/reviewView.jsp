@@ -271,7 +271,6 @@
 								</div>
 								<div class="card-action">
 									<c:forEach var="row" items="${commentList}">
-										<input type="hidden" name="cno" value=${row.cno}>
 										<div class="row">
 											<div class="col-md-2">
 												<label for="comment">작성자 : ${row.writer}</label>
@@ -290,8 +289,10 @@
 														</div>
 													</div>
 													<div class="col-md-2">
-														<button class="btn btn-warning" type="button"
-															onClick="commentGo();" class="btn">댓글수정</button>
+														<a href="#modalUpdate" role="button"
+															class="btn btn-warning" data-toggle="modal"
+															onClick="isModify('${row.content}',${row.cno});">댓글수정</a>
+
 														<button class="btn  btn-danger" type="button"
 															onClick="commentDelete(${row.cno});" class="btn">댓글삭제</button>
 													</div>
@@ -339,7 +340,7 @@
 			<div class="modal-content">
 				<div class="modal-header bg-primary">
 					<h6 class="modal-title">
-						<i class="la la-frown-o"></i> Under Development
+						<i class="la la-comment"></i> 댓글 수정
 					</h6>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -347,20 +348,24 @@
 					</button>
 				</div>
 				<div class="modal-body text-center">
-					<p>
-						Currently the pro version of the <b>Ready Dashboard</b> Bootstrap
-						is in progress development
-					</p>
-					<p>
-						<b>We'll let you know when it's done</b>
-					</p>
+				<input type="hidden" id="ModifyCno">
+					<div class="card">
+						<input type="text" class="form-control" id="contentModify"
+							name="content" placeholder="댓글을 입력하세요.">
+					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-warning"
+						data-dismiss="modal" onclick="ModifyComment();">수정</button>
+					<button type="button" class="btn btn-danger"
+						data-dismiss="modal">취소</button>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id=Modifydialog " title="댓글 수정">
+		<p>꾸꾸까까?</p>
 	</div>
 </body>
 
@@ -393,6 +398,16 @@
         }else {
         	alert("삭제를 취소 하셨습니다.");
         }
+	}
+	function isModify(comment, ModifyCno) {
+		
+		$("#contentModify").val(comment);
+		$("#ModifyCno").val(ModifyCno);
+	}
+	function ModifyComment(comment, ModifyCno) {
+		var comment = $('#contentModify').val(); 
+		var cno = $('#ModifyCno').val(); 
+		location.href="commentUpdate.do?review_num=${dto.review_num}&cno="+cno+"&content="+comment;
 	}
 </script>
 <script

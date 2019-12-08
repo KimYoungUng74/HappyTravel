@@ -27,7 +27,7 @@ public class CommentController {
 	IReviewService reviewSer;
 
 	@RequestMapping("/commentInsert.do") // 댓글 작성
-	private ModelAndView mCommentServiceInsert(@RequestParam int review_num, @RequestParam String content,
+	private ModelAndView CommentInsert(@RequestParam int review_num, @RequestParam String content,
 			@RequestParam String writer) throws Exception {
 		System.out.println(writer);
 		CommentDTO comment = new CommentDTO();
@@ -45,18 +45,23 @@ public class CommentController {
 		return mav;
 	}
 
-	@RequestMapping("/commentUpdate") // 댓글 수정
-	private int mCommentServiceUpdateProc(@RequestParam int cno, @RequestParam String content) throws Exception {
+	@RequestMapping("/commentUpdate.do") // 댓글 수정
+	private ModelAndView CommentUpdateProc(@RequestParam int review_num, @RequestParam int cno, @RequestParam String content) throws Exception {
 
 		CommentDTO comment = new CommentDTO();
 		comment.setCno(cno);
 		comment.setContent(content);
+		commentSer.commentUpdate(comment);
+		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+		ModelAndView mav = new ModelAndView();
+		// 리뷰 가져오기
+		mav = CommentSet(review_num);
 
-		return commentSer.commentUpdate(comment);
+		return mav;
 	}
 
 	@RequestMapping("/commentDelete.do") // 댓글 삭제
-	private ModelAndView mCommentServiceDelete(@RequestParam int review_num, @RequestParam int cno) throws Exception {
+	private ModelAndView CommentDelete(@RequestParam int review_num, @RequestParam int cno) throws Exception {
 		System.out.println(cno);
 		// 댓글 삭제
 		commentSer.commentDelete(cno);
