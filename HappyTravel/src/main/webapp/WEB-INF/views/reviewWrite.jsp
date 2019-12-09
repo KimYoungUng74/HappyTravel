@@ -82,7 +82,6 @@
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="passworldCheck.do"><i
 											class="ti-user"></i>내정보</a>
-										<a class="dropdown-item" href="#"></i>내 게시물</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="logout.do"><i
 											class="fa fa-power-off"></i> Logout</a>
@@ -122,9 +121,8 @@
 										<li><a href="passworldCheck.do"> <span
 												class="link-collapse">내정보</span>
 										</a></li>
-										<li><a href="#edit"> <span class="link-collapse">내
-													게시물</span>
-										</a></li>
+
+
 										<li><a href="logout.do"> <span class="link-collapse">로그아웃</span>
 										</a></li>
 									</ul>
@@ -280,12 +278,6 @@
 		</div>
 	</div>
 </body>
-
-<script type="text/javascript">
-	String
-	user_id = (String)
-	session.getAttribute("user_id");
-</script>
 
 
 <script
