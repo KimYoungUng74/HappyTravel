@@ -1,5 +1,7 @@
 package com.spring.travel.dto;
 
+import java.sql.Date;
+
 public class UserDTO {
 	private String user_id; 
 	private String user_pw;
@@ -7,6 +9,10 @@ public class UserDTO {
 	private String user_email;
 	private String user_country;
 	private String user_birth;
+	private String session_key;
+	private Date session_limit;
+	
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -42,6 +48,21 @@ public class UserDTO {
 	}
 	public void setUser_birth(String user_birth) {
 		this.user_birth = user_birth;
+	}
+	
+
+	
+	public String getSession_key() {
+		return session_key;
+	}
+	public void setSession_key(String session_key) {
+		this.session_key = session_key;
+	}
+	public Date getSession_limit() {
+		return session_limit;
+	}
+	public void setSession_limit(Date session_limit) {
+		this.session_limit = session_limit;
 	}
 	@Override
 	public String toString() {

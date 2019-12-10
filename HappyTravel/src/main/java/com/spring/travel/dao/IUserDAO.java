@@ -1,5 +1,7 @@
 package com.spring.travel.dao;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import com.spring.travel.dto.UserDTO;
@@ -19,5 +21,14 @@ public interface IUserDAO {
     public void modify(UserDTO dto);
     // 총 회원 수 
     public int totalPerson();
+    
+    // 로그인 유지 처리
+    void keepLogin(String userId, String sessionId, Date sessionLimit) throws Exception;
+
+    // 세션키 검증
+    UserDTO checkUserWithSessionKey(String value) throws Exception;
+    
+    // 쿠키 비밀번호 확인
+	boolean loginCheckCookie(UserDTO dto);
     
 }

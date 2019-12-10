@@ -27,7 +27,7 @@
 		<div class="main-header">
 			<div class="logo-header">
 
-				<a href="home.do" class="logo" id="logo"> <img
+				<a href="home" class="logo" id="logo"> <img
 					src="resources/Ready/assets/img/logo.png" alt="user-img" width="36"
 					class="img-circle"> HappyTravel
 				</a>

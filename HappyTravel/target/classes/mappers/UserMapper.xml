@@ -43,4 +43,18 @@
 			user_birth=#{user_birth}
 		WHERE user_id = #{user_id}
 	</update>
+	
+	<update id="keepLogin">
+    UPDATE USER
+    SET session_key = #{session_key}
+        , session_limit = #{session_limit}
+    WHERE user_id = #{user_id}
+	</update>
+	
+	<select id="checkUserWithSessionKey" resultType="UserDTO">
+    SELECT
+        *
+    FROM USER
+    WHERE session_key = #{value}
+</select>
 </mapper>

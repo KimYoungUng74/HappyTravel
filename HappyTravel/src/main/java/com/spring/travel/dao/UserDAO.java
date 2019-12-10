@@ -1,5 +1,9 @@
 package com.spring.travel.dao;
 
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -26,6 +30,12 @@ public class UserDAO implements IUserDAO {
 		mybatis.insert("UserMapper.Signup", dto);
 	}
 
+	@Override
+	public boolean loginCheckCookie(UserDTO dto) {
+		String name = mybatis.selectOne("UserMapper.loginCheck", dto);
+        return (name == null) ? false : true;
+	}
+	
 	@Override
 	public boolean loginCheck(UserDTO dto) {
 		dto.setUser_pw(SHA256.getSHA256(dto.getUser_pw()));
@@ -57,6 +67,21 @@ public class UserDAO implements IUserDAO {
 		return mybatis.selectOne("UserMapper.AllPerson");
 	}
 	
-	
+	// 로그인 유지 처리
+	@Override
+	public void keepLogin(String userId, String sessionId, Date sessionLimit) throws Exception {
+	    UserDTO dto = new UserDTO();
+	    dto.setUser_id(userId);
+	    dto.setSession_key(sessionId);
+	    dto.setSession_limit(sessionLimit);
+
+	    mybatis.update("UserMapper.keepLogin", dto);
+	}
+
+	// 세션키 검증
+	@Override
+	public UserDTO checkUserWithSessionKey(String value) throws Exception {
+	    return mybatis.selectOne("UserMapper.checkUserWithSessionKey", value);
+	}
 	
 }

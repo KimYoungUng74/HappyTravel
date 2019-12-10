@@ -36,7 +36,7 @@
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
-								<a href="home.do" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
+								<a href="home" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
 							</div>
 							<h4>회원 정보 수정</h4>
 							<h6 class="font-weight-light">회원님의 정보를 수정하세요!</h6>

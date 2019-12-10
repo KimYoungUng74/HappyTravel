@@ -8,7 +8,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>RoyalUI Admin</title>
+  <title>HappyTravel 로그인</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="<c:url value='resources/Ready/assets/css/vendor.bundle.base.css'/>">
   <!-- endinject -->
@@ -26,7 +26,7 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <a href="home.do" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png"  alt="logo"></a>
+                <a href="home" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png"  alt="logo"></a>
               </div>
               <h4>Hello! Let's go Happy Travel!!</h4>
               <h5 class="font-weight-light">로그인하세요.</h5>
@@ -44,8 +44,8 @@
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
                     <label class="form-check-label text-muted">
-                      <input type="checkbox" class="form-check-input">
-                      Keep me signed in
+                      <input type="checkbox" name="useCookie">
+                      	로그인 유지
                     </label>
                   </div>
                   <a href="#" class="auth-link text-black">Forgot password?</a>

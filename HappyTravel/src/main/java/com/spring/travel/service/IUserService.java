@@ -1,5 +1,7 @@
 package com.spring.travel.service;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import com.spring.travel.dto.UserDTO;
@@ -24,6 +26,12 @@ public interface IUserService {
     
     // 총 회원 수 
     public int totalPerson();
+
+	void keepLogin(String userId, String sessionId, Date date) throws Exception;
+
+	UserDTO checkLoginBefore(String value) throws Exception;
+
+	boolean loginCheckCookie(UserDTO dto, HttpSession session);
     
 }
 

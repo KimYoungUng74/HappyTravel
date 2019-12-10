@@ -1,10 +1,14 @@
 package com.spring.travel.service;
 
+import java.sql.Date;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import com.spring.travel.dao.IUserDAO;
 import com.spring.travel.dto.UserDTO;
@@ -36,6 +40,21 @@ public class UserService implements IUserService {
 	        } 
 	        return result;
 	}
+	
+	// 회원 로그인 체크
+		@Override
+		public boolean loginCheckCookie(UserDTO dto, HttpSession session) {
+			 boolean result = dao.loginCheckCookie(dto);
+		        if (result) { // true일 경우 세션에 등록
+		        	UserDTO dto2 = viewUser(dto);
+		            // 세션 변수 등록
+		            session.setAttribute("userId", dto2.getUser_id());
+		            session.setAttribute("userName", dto2.getUser_name());
+		            session.setAttribute("userEmail", dto2.getUser_email());
+		            session.setAttribute("userinfo", dto2);
+		        } 
+		        return result;
+		}
 
 	// 회원 로그인 정보
 	@Override
@@ -62,6 +81,16 @@ public class UserService implements IUserService {
 	public int totalPerson() {
 		
 		return dao.totalPerson();
+	}
+	
+	@Override
+	public void keepLogin(String userId, String sessionId, Date sessionLimit) throws Exception {
+		dao.keepLogin(userId, sessionId, sessionLimit);
+	}
+
+	@Override
+	public UserDTO checkLoginBefore(String value) throws Exception {
+	    return dao.checkUserWithSessionKey(value);
 	}
 	
 }

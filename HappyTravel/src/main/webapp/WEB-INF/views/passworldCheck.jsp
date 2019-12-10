@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>RoyalUI Admin</title>
+<title>비밀번호 확인</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="<c:url value='resources/Ready/assets/css/vendor.bundle.base.css'/>">
@@ -39,7 +39,7 @@
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
-								<a href="home.do" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
+								<a href="home" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
 							</div>
 							<h4>비밀번호 확인</h4>
 							<h6 class="font-weight-light">회원 정보를 수정하려면 비번을 입력하세요!</h6>

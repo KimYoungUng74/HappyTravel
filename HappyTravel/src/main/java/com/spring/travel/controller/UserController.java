@@ -1,10 +1,13 @@
 package com.spring.travel.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import com.spring.travel.dto.ReviewDTO;
 import com.spring.travel.dto.UserDTO;
@@ -68,13 +72,26 @@ public class UserController {
 
 	// 로그인 처리
 	@RequestMapping(value = "loginCheck.do")
-	public ModelAndView loginCheck(@ModelAttribute UserDTO dto, HttpSession sessison) {
+	public ModelAndView loginCheck(@ModelAttribute UserDTO dto, HttpSession sessison, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		boolean result = userSer.loginCheck(dto, sessison);
-		
 		ModelAndView mav = new ModelAndView();
+		
+
 		if (result) { // 로그인 성공
 			// main.jsp로 이동
 			mav=setHome();
+			if (request.getParameter("useCookie") != null) {
+				int amount = 60 * 60 * 24 * 7;  // 7일
+		        Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount)); // 로그인 유지기간 설정
+		        userSer.keepLogin(dto.getUser_id(), sessison.getId() , sessionLimit);
+	            // 쿠키 생성
+	            Cookie loginCookie = new Cookie("loginCookie", sessison.getId());
+	            loginCookie.setPath("/");
+	            loginCookie.setMaxAge(60*60*24*7);
+	            // 전송
+	            response.addCookie(loginCookie);
+	            response.sendRedirect("/travel/home");
+	        }
 			mav.setViewName("home");
 			mav.addObject("msg", "success");
 		} else { // 로그인 실패
@@ -87,8 +104,24 @@ public class UserController {
 
 	// 로그아웃
 	@RequestMapping(value = "logout.do")
-	public ModelAndView logOut(HttpSession session) {
-		userSer.logout(session);
+	public ModelAndView logOut(HttpSession session,HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+		
+		
+		Object object = session.getAttribute("userinfo");
+	    if (object != null) {
+	        UserDTO userDTO = (UserDTO) object;
+	        session.removeAttribute("login");
+	        userSer.logout(session);
+	        Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+	        if (loginCookie != null) {
+	            loginCookie.setPath("/");	// 모든결로에서 접근가능
+	            loginCookie.setMaxAge(0);
+	            response.addCookie(loginCookie);
+	            java.util.Date utilDate = new java.util.Date();
+	            userSer.keepLogin(userDTO.getUser_id(), "none", null);
+	        }
+	    }
 
 		ModelAndView mav = new ModelAndView();
 		mav=setHome();

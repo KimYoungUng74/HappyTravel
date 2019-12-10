@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>RoyalUI Admin</title>
+<title>HappyTravel 회원가입</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="<c:url value='resources/Ready/assets/css/vendor.bundle.base.css'/>">
@@ -31,7 +31,7 @@
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
-								<a href="home.do" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
+								<a href="home" class="logo" id="logo"> <img src="resources/Ready/assets/img/loginLogo.png" alt="logo"></a>
 							</div>
 							<h4>회원가입</h4>
 							<h6 class="font-weight-light">간단한 정보를 입력하고 회원가입을 완료하세요.</h6>

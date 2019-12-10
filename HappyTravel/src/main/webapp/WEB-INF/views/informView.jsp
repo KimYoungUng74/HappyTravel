@@ -6,7 +6,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Ready Bootstrap Dashboard</title>
+<title>여행 정보</title>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
 	name='viewport' />
@@ -29,7 +29,7 @@
 		<div class="main-header">
 			<div class="logo-header">
 
-				<a href="home.do" class="logo" id="logo"> <img
+				<a href="home" class="logo" id="logo"> <img
 					src="resources/Ready/assets/img/logo.png" alt="user-img" width="36"
 					class="img-circle"> HappyTravel
 				</a>
