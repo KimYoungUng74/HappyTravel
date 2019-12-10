@@ -51,12 +51,20 @@ public class UserController {
 		
 		return mav;
 	}
-
+	
 	// 로그인 화면
 	@RequestMapping(value = "login.do")
 	public String login(Locale locale, Model model) {
 		return "login";
 	}
+	
+	// 로그인 화면
+		@RequestMapping(value = "/needLogin.do")
+		public ModelAndView needLogin(Locale locale, Model model) {
+			ModelAndView mav = new ModelAndView("loginWarning");
+			mav.addObject("msg", "로그인 후 이용가능한 페이지에 접근하였습니다.");
+			return mav;
+		}
 
 	// 로그인 처리
 	@RequestMapping(value = "loginCheck.do")

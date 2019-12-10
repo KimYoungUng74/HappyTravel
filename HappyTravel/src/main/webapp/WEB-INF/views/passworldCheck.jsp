@@ -24,6 +24,11 @@
 </head>
 
 <body>
+<c:if test="${sessionScope.userId == null}">
+		<script>
+		location.href='/travel/needLogin.do';
+		</script>
+	</c:if>
 <c:if test="${msg == 'failure'}">
  	 <script> alert("비밀번호가 일치하지 않습니다.");</script> 
  </c:if>

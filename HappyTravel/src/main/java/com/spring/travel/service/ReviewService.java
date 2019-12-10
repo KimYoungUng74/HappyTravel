@@ -21,7 +21,6 @@ public class ReviewService implements IReviewService{
     public void create(ReviewDTO dto) throws Exception {
         String title = dto.getTitle();
         String content = dto.getContents();
-        String writer = dto.getUser_name();
         // *태그문자 처리 (< ==> &lt; > ==> &gt;)
         // replace(A, B) A를 B로 변경
         title = title.replace("<", "&lt;");

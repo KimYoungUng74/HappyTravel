@@ -1,15 +1,11 @@
 package com.spring.travel.controller;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +20,6 @@ import com.spring.travel.dto.PageDTO;
 import com.spring.travel.dto.ReviewDTO;
 import com.spring.travel.service.ICommentService;
 import com.spring.travel.service.IReviewService;
-import com.spring.travel.service.ReviewService;
 
 /**
  * Handles requests for the application home page.
@@ -54,8 +49,6 @@ public class ReviewController {
 
 		PageDTO pageDTO = new PageDTO(list.size(), page);
 
-		int start = pageDTO.getPageBegin();
-		int end = pageDTO.getPageEnd();
 
 		
 		List<ReviewDTO> nowList = new ArrayList<ReviewDTO>();

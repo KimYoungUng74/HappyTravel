@@ -20,6 +20,11 @@
 	href="<c:url value='resources/Ready/assets/css/demo.css'/>">
 </head>
 <body>
+<c:if test="${sessionScope.userId == null}">
+		<script>
+		location.href='/travel/needLogin.do';
+		</script>
+	</c:if>
 	<c:if test="${msg == 'logout'}">
 		<script>
 			alert("로그아웃 되었습니다.");

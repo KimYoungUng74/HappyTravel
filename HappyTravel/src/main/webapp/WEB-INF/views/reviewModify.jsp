@@ -20,6 +20,11 @@
 	href="<c:url value='resources/Ready/assets/css/demo.css'/>">
 </head>
 <body>
+	<c:if test="${sessionScope.userId == null}">
+		<script>
+		location.href='/travel/needLogin.do';
+		</script>
+	</c:if>
 	<c:if test="${msg == 'logout'}">
 		<script>
 			alert("로그아웃 되었습니다.");
@@ -132,11 +137,14 @@
 					</c:otherwise>
 				</c:choose>
 				<ul class="nav">
-					<li class="nav-item"><a href="index.html">
-							<p>여행정보</p> <span class="badge"> <i class="la la-newspaper-o"></i></span>
+					<li class="nav-item"><a href="inform.do?country=all&page=1">
+							<p>여행정보</p> <span class="badge"> <i
+								class="la la-newspaper-o"></i></span>
 					</a></li>
-					<li class="nav-item active"><a href="review.do?country=all&page=1">
-							<p>여행후기</p> <span class="badge"> <i class="la la-pencil-square-o"></i></span>
+					<li class="nav-item active"><a
+						href="review.do?country=all&page=1">
+							<p>여행후기</p> <span class="badge"> <i
+								class="la la-pencil-square-o"></i></span>
 					</a></li>
 				</ul>
 			</div>
@@ -153,9 +161,9 @@
 								</div>
 								<form name="reviewform" method="post" action="reviewUpdate.do">
 									<input type="hidden" name="user_id"
-										value="${sessionScope.userId}" />
-										<input type="hidden" name="user_name" value="${sessionScope.userName}"/>
-										<input type="hidden" name="review_num" value="${dto.review_num}"/>
+										value="${sessionScope.userId}" /> <input type="hidden"
+										name="user_name" value="${sessionScope.userName}" /> <input
+										type="hidden" name="review_num" value="${dto.review_num}" />
 									<div class="card-body">
 										<div class="form-group">
 											<div class="row">
@@ -186,8 +194,7 @@
 													</select>
 												</div>
 												<div class="col-md-3">
-													<select name="country" class="form-control"
-														onChange="">
+													<select name="country" class="form-control" onChange="">
 														<option value='${dto.country}'>${dto.country}</option>
 													</select>
 												</div>
@@ -205,7 +212,8 @@
 													<div id="star"></div>
 												</div>
 											</div>
-											<textarea class="form-control" name="contents" id="comment" rows="10">${dto.contents}</textarea>
+											<textarea class="form-control" name="contents" id="comment"
+												rows="10">${dto.contents}</textarea>
 										</div>
 									</div>
 
@@ -279,12 +287,6 @@
 		</div>
 	</div>
 </body>
-
-<script type="text/javascript">
-	String
-	user_id = (String)
-	session.getAttribute("user_id");
-</script>
 
 
 <script

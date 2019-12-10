@@ -24,5 +24,24 @@
 	<context:component-scan base-package="com.spring.travel" />
 	
 	
-	
+	<interceptors>
+  <interceptor>
+   <mapping path="/reviewWrite.do"/>
+   <mapping path="reviewInsert.do"/>
+   <mapping path="reviewUpdatePage.do?review_num=**"/>
+   <mapping path="reviewUpdate.do"/>
+   <mapping path="reviewDelete.do"/>
+   <mapping path="/informWrite.do"/>
+   <mapping path="informInsert.do"/>
+   <mapping path="informUpdatePage.do"/>
+   <mapping path="informUpdate.do"/>
+   <mapping path="informDelete.do"/>
+   <mapping path="logout.do"/>
+   <mapping path="passworldCheck.do"/>
+   <mapping path="passworldCheck.ing"/>
+   <mapping path="userModify.do"/>
+    <mapping path="userModifyOk.do"/>
+   <beans:bean class="com.spring.travel.intercepter.LoginInterceptor" />
+  </interceptor>
+ 	</interceptors>
 </beans:beans>

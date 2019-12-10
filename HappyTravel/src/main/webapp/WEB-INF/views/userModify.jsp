@@ -24,6 +24,11 @@
 </head>
 
 <body>
+<c:if test="${sessionScope.userId == null}">
+		<script>
+		location.href='/travel/needLogin.do';
+		</script>
+	</c:if>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="content-wrapper d-flex align-items-center auth px-0">
