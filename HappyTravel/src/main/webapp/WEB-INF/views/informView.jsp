@@ -215,11 +215,9 @@
 												<button onClick="deleteAction()" class="btn btn-danger"
 													style="float: right; margin-right: 5px">삭제 하기</button>
 												<button
-													onClick="location.href='reviewUpdatePage.do?review_num=${dto.review_num}'"
+													onClick="location.href='informUpdatePage.do?inform_num=${dto.inform_num}'"
 													class="btn btn-success"
-													style="float: right; margin-right: 5px">수정 하기</button>
-
-												
+													style="float: right; margin-right: 5px">수정 하기</button>	
 											</div>
 										</c:if>
 									</div>
