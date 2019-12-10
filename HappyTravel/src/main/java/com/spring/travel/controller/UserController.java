@@ -86,7 +86,7 @@ public class UserController {
 		        userSer.keepLogin(dto.getUser_id(), sessison.getId() , sessionLimit);
 	            // 쿠키 생성
 	            Cookie loginCookie = new Cookie("loginCookie", sessison.getId());
-	            loginCookie.setPath("/");
+	            loginCookie.setPath("/");	// 모든경로에서 접근가능
 	            loginCookie.setMaxAge(60*60*24*7);
 	            // 전송
 	            response.addCookie(loginCookie);
@@ -107,7 +107,7 @@ public class UserController {
 	public ModelAndView logOut(HttpSession session,HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 		
-		
+		// 세션 정보 가져오기
 		Object object = session.getAttribute("userinfo");
 	    if (object != null) {
 	        UserDTO userDTO = (UserDTO) object;
@@ -115,11 +115,11 @@ public class UserController {
 	        userSer.logout(session);
 	        Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 	        if (loginCookie != null) {
-	            loginCookie.setPath("/");	// 모든결로에서 접근가능
-	            loginCookie.setMaxAge(0);
+	            loginCookie.setPath("/");	// 모든경로에서 접근가능
+	            loginCookie.setMaxAge(0);	// 쿠키 삭제
 	            response.addCookie(loginCookie);
 	            java.util.Date utilDate = new java.util.Date();
-	            userSer.keepLogin(userDTO.getUser_id(), "none", null);
+	            userSer.keepLogin(userDTO.getUser_id(), "none", null);	// DB에 저장되있는거 초기화
 	        }
 	    }
 

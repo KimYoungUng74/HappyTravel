@@ -27,12 +27,12 @@ public class CommentController {
 	@RequestMapping("/commentInsert.do") // 댓글 작성
 	private ModelAndView CommentInsert(@RequestParam int review_num, @RequestParam String content,
 			@RequestParam String writer) throws Exception {
-		System.out.println(writer);
+
 		CommentDTO comment = new CommentDTO();
 		comment.setBno(review_num);
 		comment.setContent(content);
 		comment.setWriter(writer);
-		System.out.println(content);
+
 		commentSer.commentInsert(comment);
 
 		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
@@ -60,7 +60,7 @@ public class CommentController {
 
 	@RequestMapping("/commentDelete.do") // 댓글 삭제
 	private ModelAndView CommentDelete(@RequestParam int review_num, @RequestParam int cno) throws Exception {
-		System.out.println(cno);
+
 		// 댓글 삭제
 		commentSer.commentDelete(cno);
 		// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
