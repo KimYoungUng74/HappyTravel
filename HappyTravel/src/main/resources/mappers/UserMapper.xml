@@ -8,7 +8,7 @@
 	<insert id="Signup" parameterType="UserDTO">
 		INSERT INTO USER
 		VALUES(#{user_id}, #{user_pw},#{user_name}, #{user_email},
-		#{user_country}, #{user_birth})
+		#{user_country}, #{user_birth},'none',null)
 	</insert>
 	
 	<select id="AllPerson" resultType="int">

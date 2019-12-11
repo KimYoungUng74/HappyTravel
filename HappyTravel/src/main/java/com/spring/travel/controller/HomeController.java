@@ -58,7 +58,7 @@ public class HomeController {
         if (loginCookie != null) {
             UserDTO userDTO = userSer.checkLoginBefore(loginCookie.getValue());
             if (userDTO != null)
-            	
+            	userSer.loginCheckCookie(userDTO, httpSession);
             	System.out.println(userDTO.getUser_id());
         }
         ModelAndView mav = setHome();

@@ -37,6 +37,7 @@ public class UserService implements IUserService {
 	            session.setAttribute("userId", dto2.getUser_id());
 	            session.setAttribute("userName", dto2.getUser_name());
 	            session.setAttribute("userEmail", dto2.getUser_email());
+	            session.setAttribute("userinfo", dto2);
 	        } 
 	        return result;
 	}

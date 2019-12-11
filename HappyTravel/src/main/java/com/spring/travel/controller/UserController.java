@@ -106,15 +106,17 @@ public class UserController {
 	@RequestMapping(value = "logout.do")
 	public ModelAndView logOut(HttpSession session,HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-		
+		System.out.println("이잉");
 		// 세션 정보 가져오기
 		Object object = session.getAttribute("userinfo");
 	    if (object != null) {
+	    	System.out.println("아잉");
 	        UserDTO userDTO = (UserDTO) object;
-	        session.removeAttribute("login");
+	        session.removeAttribute("userinfo");
 	        userSer.logout(session);
 	        Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 	        if (loginCookie != null) {
+	        	System.out.println("이니닌잉");
 	            loginCookie.setPath("/");	// 모든경로에서 접근가능
 	            loginCookie.setMaxAge(0);	// 쿠키 삭제
 	            response.addCookie(loginCookie);
